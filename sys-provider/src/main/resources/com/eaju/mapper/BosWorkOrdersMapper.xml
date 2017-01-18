@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.mapper.BosWorkOrdersMapper">
+	<select id="findBosWorkOrdersBySourceAndId" resultType="int">
+		select
+		count(1) from yianju.BOS_WORK_ORDERS where SOURCE=#{source} AND
+		OUT_ID=#{outId} AND STATUS=0
+	</select>
+	<insert id="insert" parameterType="com.eaju.entity.BosWorkOrders">
+		insert into yianju.BOS_WORK_ORDERS (ID, ECCNAME, ECCPHONE,
+		ECLNAME, CREATETIME, ETDLNO,
+		EOATIME, SIGNTIME, ETDLENDTIME,
+		EVAL, EON, WLSTATUS,
+		WLACCEPTTIME, WLACCEPTSTATION, TEACHNAME,
+		TEACHTEL, SUPNAME, SUPTEL,
+		EBCDTYPE, EBCUCODE,EBCUNAME, SOURCE,
+		OUT_ID, STATUS, CREATOR,
+		CREATORTIME, UPDATOR, UPDATORTIME
+		)
+		values (seq_bos_work_order.nextval, #{eccname,jdbcType=VARCHAR},
+		#{eccphone,jdbcType=VARCHAR},
+		#{eclname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{etdlno,jdbcType=VARCHAR},
+		#{eoatime,jdbcType=TIMESTAMP}, #{signtime,jdbcType=TIMESTAMP},
+		#{etdlendtime,jdbcType=TIMESTAMP},
+		#{eval,jdbcType=VARCHAR}, #{eon,jdbcType=VARCHAR}, #{wlstatus,jdbcType=VARCHAR},
+		#{wlaccepttime,jdbcType=VARCHAR}, #{wlacceptstation,jdbcType=VARCHAR},
+		#{teachname,jdbcType=VARCHAR},
+		#{teachtel,jdbcType=VARCHAR}, #{supname,jdbcType=VARCHAR}, #{suptel,jdbcType=VARCHAR},
+		#{ebcdtype,jdbcType=VARCHAR},
+		#{ebcucode,jdbcType=VARCHAR},#{ebcuname,jdbcType=VARCHAR},
+		#{source,jdbcType=VARCHAR},
+		#{outId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+		#{creatortime,jdbcType=TIMESTAMP}, #{updator,jdbcType=VARCHAR},
+		#{updatortime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+</mapper>

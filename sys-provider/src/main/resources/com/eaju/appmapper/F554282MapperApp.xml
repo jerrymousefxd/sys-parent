@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.F554282MapperApp">
+	<resultMap id="BaseResultMap" type="com.eaju.entity.F554282">
+		<id column="SDN001" property="sdn001" jdbcType="DECIMAL" />
+		<id column="SDDOCO" property="sddoco" jdbcType="DECIMAL" />
+		<id column="SDKCOO" property="sdkcoo" jdbcType="OTHER" />
+		<id column="SDDCTO" property="sddcto" jdbcType="OTHER" />
+		<id column="SDLNID" property="sdlnid" jdbcType="DECIMAL" />
+		<result column="SDITM" property="sditm" jdbcType="DECIMAL" />
+		<result column="SDLITM" property="sdlitm" jdbcType="OTHER" />
+		<result column="SDDSC1" property="sddsc1" jdbcType="OTHER" />
+		<result column="SDUORG" property="sduorg" jdbcType="DECIMAL" />
+		<result column="SDITVL" property="sditvl" jdbcType="DECIMAL" />
+		<result column="SDITWT" property="sditwt" jdbcType="DECIMAL" />
+		<result column="SDLOCN" property="sdlocn" jdbcType="OTHER" />
+		<result column="SDDL01" property="sddl01" jdbcType="OTHER" />
+		<result column="SDPRP1" property="sdprp1" jdbcType="OTHER" />
+		<result column="SDDL02" property="sddl02" jdbcType="OTHER" />
+		<result column="SDDL03" property="sddl03" jdbcType="OTHER" />
+		<result column="SDDL04" property="sddl04" jdbcType="OTHER" />
+		<result column="SDUPRC" property="sduprc" jdbcType="DECIMAL" />
+		<result column="SDAA1" property="sdaa1" jdbcType="DECIMAL" />
+		<result column="SDMCU" property="sdmcu" jdbcType="OTHER" />
+		<result column="SDDC" property="sddc" jdbcType="OTHER" />
+		<result column="SDMCU3" property="sdmcu3" jdbcType="OTHER" />
+		<result column="SDDC20" property="sddc20" jdbcType="OTHER" />
+		<result column="SDLOTN" property="sdlotn" jdbcType="OTHER" />
+		<result column="SDVR01" property="sdvr01" jdbcType="OTHER" />
+		<result column="SDDL20" property="sddl20" jdbcType="OTHER" />
+		<result column="SDREMK" property="sdremk" jdbcType="OTHER" />
+		<result column="SDSTYE" property="sdstye" jdbcType="OTHER" />
+		<result column="SDN002" property="sdn002" jdbcType="DECIMAL" />
+		<result column="SDEDSP" property="sdedsp" jdbcType="OTHER" />
+		<result column="SDUSER" property="sduser" jdbcType="OTHER" />
+		<result column="SDPID" property="sdpid" jdbcType="OTHER" />
+		<result column="SDUPMJ" property="sdupmj" jdbcType="DECIMAL" />
+		<result column="SDUPMT" property="sdupmt" jdbcType="DECIMAL" />
+		<result column="SDDL26" property="sddl26" jdbcType="OTHER" />
+		<result column="SDDL27" property="sddl27" jdbcType="OTHER" />
+		<result column="SDDL28" property="sddl28" jdbcType="OTHER" />
+		<result column="SDDL29" property="sddl29" jdbcType="OTHER" />
+		<result column="SDDATE01" property="sddate01" jdbcType="DECIMAL" />
+		<result column="SDDATE02" property="sddate02" jdbcType="DECIMAL" />
+		<result column="SDLOCNE1" property="sdlocne1" jdbcType="OTHER" />
+		<result column="SDDSC2" property="sddsc2" jdbcType="OTHER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		SDN001, SDDOCO, SDKCOO, SDDCTO, SDLNID, SDITM, SDLITM, SDDSC1, SDUORG,
+		SDITVL, SDITWT,
+		SDLOCN, SDDL01, SDPRP1, SDDL02, SDDL03, SDDL04, SDUPRC, SDAA1, SDMCU, SDDC,
+		SDMCU3,
+		SDDC20, SDLOTN, SDVR01, SDDL20, SDREMK, SDSTYE, SDN002, SDEDSP, SDUSER,
+		SDPID, SDUPMJ,
+		SDUPMT, SDDL26, SDDL27, SDDL28, SDDL29, SDDATE01, SDDATE02, SDLOCNE1, SDDSC2
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.eaju.entity.F554282Example">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from yajedi.F554282
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="com.eaju.entity.F554282Key">
+		select
+		<include refid="Base_Column_List" />
+		from yajedi.F554282
+		where SDN001 = #{sdn001,jdbcType=DECIMAL}
+		and SDDOCO = #{sddoco,jdbcType=DECIMAL}
+		and SDKCOO = #{sdkcoo,jdbcType=OTHER}
+		and SDDCTO = #{sddcto,jdbcType=OTHER}
+		and SDLNID = #{sdlnid,jdbcType=DECIMAL}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.eaju.entity.F554282Key">
+		delete from yajedi.F554282
+		where SDN001 = #{sdn001,jdbcType=DECIMAL}
+		and SDDOCO = #{sddoco,jdbcType=DECIMAL}
+		and SDKCOO = #{sdkcoo,jdbcType=OTHER}
+		and SDDCTO = #{sddcto,jdbcType=OTHER}
+		and SDLNID = #{sdlnid,jdbcType=DECIMAL}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.eaju.entity.F554282Example">
+		delete from yajedi.F554282
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.eaju.entity.F554282">
+		insert into yajedi.F554282 (SDN001, SDDOCO, SDKCOO,
+		SDDCTO, SDLNID, SDITM,
+		SDLITM, SDDSC1, SDUORG,
+		SDITVL, SDITWT, SDLOCN,
+		SDDL01, SDPRP1, SDDL02, SDDL03,
+		SDDL04, SDUPRC, SDAA1,
+		SDMCU, SDDC, SDMCU3, SDDC20,
+		SDLOTN, SDVR01, SDDL20, SDREMK,
+		SDSTYE, SDN002, SDEDSP,
+		SDUSER, SDPID, SDUPMJ,
+		SDUPMT, SDDL26, SDDL27,
+		SDDL28, SDDL29, SDDATE01,
+		SDDATE02, SDLOCNE1, SDDSC2
+		)
+		values (#{sdn001,jdbcType=DECIMAL}, #{sddoco,jdbcType=DECIMAL},
+		#{sdkcoo,jdbcType=VARCHAR},
+		#{sddcto,jdbcType=VARCHAR}, #{sdlnid,jdbcType=DECIMAL}, #{sditm,jdbcType=DECIMAL},
+		#{sdlitm,jdbcType=VARCHAR}, #{sddsc1,jdbcType=VARCHAR},
+		#{sduorg,jdbcType=DECIMAL},
+		#{sditvl,jdbcType=DECIMAL}, #{sditwt,jdbcType=DECIMAL}, #{sdlocn,jdbcType=VARCHAR},
+		#{sddl01,jdbcType=VARCHAR}, #{sdprp1,jdbcType=VARCHAR},
+		#{sddl02,jdbcType=VARCHAR}, #{sddl03,jdbcType=VARCHAR},
+		#{sddl04,jdbcType=VARCHAR}, #{sduprc,jdbcType=DECIMAL},
+		#{sdaa1,jdbcType=DECIMAL},
+		#{sdmcu,jdbcType=VARCHAR}, #{sddc,jdbcType=VARCHAR}, #{sdmcu3,jdbcType=VARCHAR},
+		#{sddc20,jdbcType=VARCHAR},
+		#{sdlotn,jdbcType=VARCHAR}, #{sdvr01,jdbcType=VARCHAR}, #{sddl20,jdbcType=VARCHAR},
+		#{sdremk,jdbcType=VARCHAR},
+		#{sdstye,jdbcType=VARCHAR}, #{sdn002,jdbcType=DECIMAL}, #{sdedsp,jdbcType=VARCHAR},
+		#{sduser,jdbcType=VARCHAR}, #{sdpid,jdbcType=VARCHAR},
+		#{sdupmj,jdbcType=DECIMAL},
+		#{sdupmt,jdbcType=DECIMAL}, #{sddl26,jdbcType=VARCHAR}, #{sddl27,jdbcType=VARCHAR},
+		#{sddl28,jdbcType=VARCHAR}, #{sddl29,jdbcType=VARCHAR},
+		#{sddate01,jdbcType=DECIMAL},
+		#{sddate02,jdbcType=DECIMAL}, #{sdlocne1,jdbcType=VARCHAR}, #{sddsc2,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.eaju.entity.F554282">
+		insert into yajedi.F554282
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sdn001 != null">
+				SDN001,
+			</if>
+			<if test="sddoco != null">
+				SDDOCO,
+			</if>
+			<if test="sdkcoo != null">
+				SDKCOO,
+			</if>
+			<if test="sddcto != null">
+				SDDCTO,
+			</if>
+			<if test="sdlnid != null">
+				SDLNID,
+			</if>
+			<if test="sditm != null">
+				SDITM,
+			</if>
+			<if test="sdlitm != null">
+				SDLITM,
+			</if>
+			<if test="sddsc1 != null">
+				SDDSC1,
+			</if>
+			<if test="sduorg != null">
+				SDUORG,
+			</if>
+			<if test="sditvl != null">
+				SDITVL,
+			</if>
+			<if test="sditwt != null">
+				SDITWT,
+			</if>
+			<if test="sdlocn != null">
+				SDLOCN,
+			</if>
+			<if test="sddl01 != null">
+				SDDL01,
+			</if>
+			<if test="sdprp1 != null">
+				SDPRP1,
+			</if>
+			<if test="sddl02 != null">
+				SDDL02,
+			</if>
+			<if test="sddl03 != null">
+				SDDL03,
+			</if>
+			<if test="sddl04 != null">
+				SDDL04,
+			</if>
+			<if test="sduprc != null">
+				SDUPRC,
+			</if>
+			<if test="sdaa1 != null">
+				SDAA1,
+			</if>
+			<if test="sdmcu != null">
+				SDMCU,
+			</if>
+			<if test="sddc != null">
+				SDDC,
+			</if>
+			<if test="sdmcu3 != null">
+				SDMCU3,
+			</if>
+			<if test="sddc20 != null">
+				SDDC20,
+			</if>
+			<if test="sdlotn != null">
+				SDLOTN,
+			</if>
+			<if test="sdvr01 != null">
+				SDVR01,
+			</if>
+			<if test="sddl20 != null">
+				SDDL20,
+			</if>
+			<if test="sdremk != null">
+				SDREMK,
+			</if>
+			<if test="sdstye != null">
+				SDSTYE,
+			</if>
+			<if test="sdn002 != null">
+				SDN002,
+			</if>
+			<if test="sdedsp != null">
+				SDEDSP,
+			</if>
+			<if test="sduser != null">
+				SDUSER,
+			</if>
+			<if test="sdpid != null">
+				SDPID,
+			</if>
+			<if test="sdupmj != null">
+				SDUPMJ,
+			</if>
+			<if test="sdupmt != null">
+				SDUPMT,
+			</if>
+			<if test="sddl26 != null">
+				SDDL26,
+			</if>
+			<if test="sddl27 != null">
+				SDDL27,
+			</if>
+			<if test="sddl28 != null">
+				SDDL28,
+			</if>
+			<if test="sddl29 != null">
+				SDDL29,
+			</if>
+			<if test="sddate01 != null">
+				SDDATE01,
+			</if>
+			<if test="sddate02 != null">
+				SDDATE02,
+			</if>
+			<if test="sdlocne1 != null">
+				SDLOCNE1,
+			</if>
+			<if test="sddsc2 != null">
+				SDDSC2,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sdn001 != null">
+				#{sdn001,jdbcType=DECIMAL},
+			</if>
+			<if test="sddoco != null">
+				#{sddoco,jdbcType=DECIMAL},
+			</if>
+			<if test="sdkcoo != null">
+				#{sdkcoo,jdbcType=OTHER},
+			</if>
+			<if test="sddcto != null">
+				#{sddcto,jdbcType=OTHER},
+			</if>
+			<if test="sdlnid != null">
+				#{sdlnid,jdbcType=DECIMAL},
+			</if>
+			<if test="sditm != null">
+				#{sditm,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlitm != null">
+				#{sdlitm,jdbcType=OTHER},
+			</if>
+			<if test="sddsc1 != null">
+				#{sddsc1,jdbcType=OTHER},
+			</if>
+			<if test="sduorg != null">
+				#{sduorg,jdbcType=DECIMAL},
+			</if>
+			<if test="sditvl != null">
+				#{sditvl,jdbcType=DECIMAL},
+			</if>
+			<if test="sditwt != null">
+				#{sditwt,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlocn != null">
+				#{sdlocn,jdbcType=OTHER},
+			</if>
+			<if test="sddl01 != null">
+				#{sddl01,jdbcType=OTHER},
+			</if>
+			<if test="sdprp1 != null">
+				#{sdprp1,jdbcType=OTHER},
+			</if>
+			<if test="sddl02 != null">
+				#{sddl02,jdbcType=OTHER},
+			</if>
+			<if test="sddl03 != null">
+				#{sddl03,jdbcType=OTHER},
+			</if>
+			<if test="sddl04 != null">
+				#{sddl04,jdbcType=OTHER},
+			</if>
+			<if test="sduprc != null">
+				#{sduprc,jdbcType=DECIMAL},
+			</if>
+			<if test="sdaa1 != null">
+				#{sdaa1,jdbcType=DECIMAL},
+			</if>
+			<if test="sdmcu != null">
+				#{sdmcu,jdbcType=OTHER},
+			</if>
+			<if test="sddc != null">
+				#{sddc,jdbcType=OTHER},
+			</if>
+			<if test="sdmcu3 != null">
+				#{sdmcu3,jdbcType=OTHER},
+			</if>
+			<if test="sddc20 != null">
+				#{sddc20,jdbcType=OTHER},
+			</if>
+			<if test="sdlotn != null">
+				#{sdlotn,jdbcType=OTHER},
+			</if>
+			<if test="sdvr01 != null">
+				#{sdvr01,jdbcType=OTHER},
+			</if>
+			<if test="sddl20 != null">
+				#{sddl20,jdbcType=OTHER},
+			</if>
+			<if test="sdremk != null">
+				#{sdremk,jdbcType=OTHER},
+			</if>
+			<if test="sdstye != null">
+				#{sdstye,jdbcType=OTHER},
+			</if>
+			<if test="sdn002 != null">
+				#{sdn002,jdbcType=DECIMAL},
+			</if>
+			<if test="sdedsp != null">
+				#{sdedsp,jdbcType=OTHER},
+			</if>
+			<if test="sduser != null">
+				#{sduser,jdbcType=OTHER},
+			</if>
+			<if test="sdpid != null">
+				#{sdpid,jdbcType=OTHER},
+			</if>
+			<if test="sdupmj != null">
+				#{sdupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="sdupmt != null">
+				#{sdupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="sddl26 != null">
+				#{sddl26,jdbcType=OTHER},
+			</if>
+			<if test="sddl27 != null">
+				#{sddl27,jdbcType=OTHER},
+			</if>
+			<if test="sddl28 != null">
+				#{sddl28,jdbcType=OTHER},
+			</if>
+			<if test="sddl29 != null">
+				#{sddl29,jdbcType=OTHER},
+			</if>
+			<if test="sddate01 != null">
+				#{sddate01,jdbcType=DECIMAL},
+			</if>
+			<if test="sddate02 != null">
+				#{sddate02,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlocne1 != null">
+				#{sdlocne1,jdbcType=OTHER},
+			</if>
+			<if test="sddsc2 != null">
+				#{sddsc2,jdbcType=OTHER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.eaju.entity.F554282Example"
+		resultType="java.lang.Integer">
+		select count(*) from yajedi.F554282
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update yajedi.F554282
+		<set>
+			<if test="record.sdn001 != null">
+				SDN001 = #{record.sdn001,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sddoco != null">
+				SDDOCO = #{record.sddoco,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdkcoo != null">
+				SDKCOO = #{record.sdkcoo,jdbcType=OTHER},
+			</if>
+			<if test="record.sddcto != null">
+				SDDCTO = #{record.sddcto,jdbcType=OTHER},
+			</if>
+			<if test="record.sdlnid != null">
+				SDLNID = #{record.sdlnid,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sditm != null">
+				SDITM = #{record.sditm,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdlitm != null">
+				SDLITM = #{record.sdlitm,jdbcType=OTHER},
+			</if>
+			<if test="record.sddsc1 != null">
+				SDDSC1 = #{record.sddsc1,jdbcType=OTHER},
+			</if>
+			<if test="record.sduorg != null">
+				SDUORG = #{record.sduorg,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sditvl != null">
+				SDITVL = #{record.sditvl,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sditwt != null">
+				SDITWT = #{record.sditwt,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdlocn != null">
+				SDLOCN = #{record.sdlocn,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl01 != null">
+				SDDL01 = #{record.sddl01,jdbcType=OTHER},
+			</if>
+			<if test="record.sdprp1 != null">
+				SDPRP1 = #{record.sdprp1,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl02 != null">
+				SDDL02 = #{record.sddl02,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl03 != null">
+				SDDL03 = #{record.sddl03,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl04 != null">
+				SDDL04 = #{record.sddl04,jdbcType=OTHER},
+			</if>
+			<if test="record.sduprc != null">
+				SDUPRC = #{record.sduprc,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdaa1 != null">
+				SDAA1 = #{record.sdaa1,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdmcu != null">
+				SDMCU = #{record.sdmcu,jdbcType=OTHER},
+			</if>
+			<if test="record.sddc != null">
+				SDDC = #{record.sddc,jdbcType=OTHER},
+			</if>
+			<if test="record.sdmcu3 != null">
+				SDMCU3 = #{record.sdmcu3,jdbcType=OTHER},
+			</if>
+			<if test="record.sddc20 != null">
+				SDDC20 = #{record.sddc20,jdbcType=OTHER},
+			</if>
+			<if test="record.sdlotn != null">
+				SDLOTN = #{record.sdlotn,jdbcType=OTHER},
+			</if>
+			<if test="record.sdvr01 != null">
+				SDVR01 = #{record.sdvr01,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl20 != null">
+				SDDL20 = #{record.sddl20,jdbcType=OTHER},
+			</if>
+			<if test="record.sdremk != null">
+				SDREMK = #{record.sdremk,jdbcType=OTHER},
+			</if>
+			<if test="record.sdstye != null">
+				SDSTYE = #{record.sdstye,jdbcType=OTHER},
+			</if>
+			<if test="record.sdn002 != null">
+				SDN002 = #{record.sdn002,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdedsp != null">
+				SDEDSP = #{record.sdedsp,jdbcType=OTHER},
+			</if>
+			<if test="record.sduser != null">
+				SDUSER = #{record.sduser,jdbcType=OTHER},
+			</if>
+			<if test="record.sdpid != null">
+				SDPID = #{record.sdpid,jdbcType=OTHER},
+			</if>
+			<if test="record.sdupmj != null">
+				SDUPMJ = #{record.sdupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdupmt != null">
+				SDUPMT = #{record.sdupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sddl26 != null">
+				SDDL26 = #{record.sddl26,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl27 != null">
+				SDDL27 = #{record.sddl27,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl28 != null">
+				SDDL28 = #{record.sddl28,jdbcType=OTHER},
+			</if>
+			<if test="record.sddl29 != null">
+				SDDL29 = #{record.sddl29,jdbcType=OTHER},
+			</if>
+			<if test="record.sddate01 != null">
+				SDDATE01 = #{record.sddate01,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sddate02 != null">
+				SDDATE02 = #{record.sddate02,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sdlocne1 != null">
+				SDLOCNE1 = #{record.sdlocne1,jdbcType=OTHER},
+			</if>
+			<if test="record.sddsc2 != null">
+				SDDSC2 = #{record.sddsc2,jdbcType=OTHER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update yajedi.F554282
+		set SDN001 = #{record.sdn001,jdbcType=DECIMAL},
+		SDDOCO = #{record.sddoco,jdbcType=DECIMAL},
+		SDKCOO = #{record.sdkcoo,jdbcType=OTHER},
+		SDDCTO = #{record.sddcto,jdbcType=OTHER},
+		SDLNID = #{record.sdlnid,jdbcType=DECIMAL},
+		SDITM = #{record.sditm,jdbcType=DECIMAL},
+		SDLITM = #{record.sdlitm,jdbcType=OTHER},
+		SDDSC1 = #{record.sddsc1,jdbcType=OTHER},
+		SDUORG = #{record.sduorg,jdbcType=DECIMAL},
+		SDITVL = #{record.sditvl,jdbcType=DECIMAL},
+		SDITWT = #{record.sditwt,jdbcType=DECIMAL},
+		SDLOCN = #{record.sdlocn,jdbcType=OTHER},
+		SDDL01 = #{record.sddl01,jdbcType=OTHER},
+		SDPRP1 = #{record.sdprp1,jdbcType=OTHER},
+		SDDL02 = #{record.sddl02,jdbcType=OTHER},
+		SDDL03 = #{record.sddl03,jdbcType=OTHER},
+		SDDL04 = #{record.sddl04,jdbcType=OTHER},
+		SDUPRC = #{record.sduprc,jdbcType=DECIMAL},
+		SDAA1 = #{record.sdaa1,jdbcType=DECIMAL},
+		SDMCU = #{record.sdmcu,jdbcType=OTHER},
+		SDDC = #{record.sddc,jdbcType=OTHER},
+		SDMCU3 = #{record.sdmcu3,jdbcType=OTHER},
+		SDDC20 = #{record.sddc20,jdbcType=OTHER},
+		SDLOTN = #{record.sdlotn,jdbcType=OTHER},
+		SDVR01 = #{record.sdvr01,jdbcType=OTHER},
+		SDDL20 = #{record.sddl20,jdbcType=OTHER},
+		SDREMK = #{record.sdremk,jdbcType=OTHER},
+		SDSTYE = #{record.sdstye,jdbcType=OTHER},
+		SDN002 = #{record.sdn002,jdbcType=DECIMAL},
+		SDEDSP = #{record.sdedsp,jdbcType=OTHER},
+		SDUSER = #{record.sduser,jdbcType=OTHER},
+		SDPID = #{record.sdpid,jdbcType=OTHER},
+		SDUPMJ = #{record.sdupmj,jdbcType=DECIMAL},
+		SDUPMT = #{record.sdupmt,jdbcType=DECIMAL},
+		SDDL26 = #{record.sddl26,jdbcType=OTHER},
+		SDDL27 = #{record.sddl27,jdbcType=OTHER},
+		SDDL28 = #{record.sddl28,jdbcType=OTHER},
+		SDDL29 = #{record.sddl29,jdbcType=OTHER},
+		SDDATE01 = #{record.sddate01,jdbcType=DECIMAL},
+		SDDATE02 = #{record.sddate02,jdbcType=DECIMAL},
+		SDLOCNE1 = #{record.sdlocne1,jdbcType=OTHER},
+		SDDSC2 = #{record.sddsc2,jdbcType=OTHER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.eaju.entity.F554282">
+		update yajedi.F554282
+		<set>
+			<if test="sditm != null">
+				SDITM = #{sditm,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlitm != null">
+				SDLITM = #{sdlitm,jdbcType=OTHER},
+			</if>
+			<if test="sddsc1 != null">
+				SDDSC1 = #{sddsc1,jdbcType=OTHER},
+			</if>
+			<if test="sduorg != null">
+				SDUORG = #{sduorg,jdbcType=DECIMAL},
+			</if>
+			<if test="sditvl != null">
+				SDITVL = #{sditvl,jdbcType=DECIMAL},
+			</if>
+			<if test="sditwt != null">
+				SDITWT = #{sditwt,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlocn != null">
+				SDLOCN = #{sdlocn,jdbcType=OTHER},
+			</if>
+			<if test="sddl01 != null">
+				SDDL01 = #{sddl01,jdbcType=OTHER},
+			</if>
+			<if test="sdprp1 != null">
+				SDPRP1 = #{sdprp1,jdbcType=OTHER},
+			</if>
+			<if test="sddl02 != null">
+				SDDL02 = #{sddl02,jdbcType=OTHER},
+			</if>
+			<if test="sddl03 != null">
+				SDDL03 = #{sddl03,jdbcType=OTHER},
+			</if>
+			<if test="sddl04 != null">
+				SDDL04 = #{sddl04,jdbcType=OTHER},
+			</if>
+			<if test="sduprc != null">
+				SDUPRC = #{sduprc,jdbcType=DECIMAL},
+			</if>
+			<if test="sdaa1 != null">
+				SDAA1 = #{sdaa1,jdbcType=DECIMAL},
+			</if>
+			<if test="sdmcu != null">
+				SDMCU = #{sdmcu,jdbcType=OTHER},
+			</if>
+			<if test="sddc != null">
+				SDDC = #{sddc,jdbcType=OTHER},
+			</if>
+			<if test="sdmcu3 != null">
+				SDMCU3 = #{sdmcu3,jdbcType=OTHER},
+			</if>
+			<if test="sddc20 != null">
+				SDDC20 = #{sddc20,jdbcType=OTHER},
+			</if>
+			<if test="sdlotn != null">
+				SDLOTN = #{sdlotn,jdbcType=OTHER},
+			</if>
+			<if test="sdvr01 != null">
+				SDVR01 = #{sdvr01,jdbcType=OTHER},
+			</if>
+			<if test="sddl20 != null">
+				SDDL20 = #{sddl20,jdbcType=OTHER},
+			</if>
+			<if test="sdremk != null">
+				SDREMK = #{sdremk,jdbcType=OTHER},
+			</if>
+			<if test="sdstye != null">
+				SDSTYE = #{sdstye,jdbcType=OTHER},
+			</if>
+			<if test="sdn002 != null">
+				SDN002 = #{sdn002,jdbcType=DECIMAL},
+			</if>
+			<if test="sdedsp != null">
+				SDEDSP = #{sdedsp,jdbcType=OTHER},
+			</if>
+			<if test="sduser != null">
+				SDUSER = #{sduser,jdbcType=OTHER},
+			</if>
+			<if test="sdpid != null">
+				SDPID = #{sdpid,jdbcType=OTHER},
+			</if>
+			<if test="sdupmj != null">
+				SDUPMJ = #{sdupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="sdupmt != null">
+				SDUPMT = #{sdupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="sddl26 != null">
+				SDDL26 = #{sddl26,jdbcType=OTHER},
+			</if>
+			<if test="sddl27 != null">
+				SDDL27 = #{sddl27,jdbcType=OTHER},
+			</if>
+			<if test="sddl28 != null">
+				SDDL28 = #{sddl28,jdbcType=OTHER},
+			</if>
+			<if test="sddl29 != null">
+				SDDL29 = #{sddl29,jdbcType=OTHER},
+			</if>
+			<if test="sddate01 != null">
+				SDDATE01 = #{sddate01,jdbcType=DECIMAL},
+			</if>
+			<if test="sddate02 != null">
+				SDDATE02 = #{sddate02,jdbcType=DECIMAL},
+			</if>
+			<if test="sdlocne1 != null">
+				SDLOCNE1 = #{sdlocne1,jdbcType=OTHER},
+			</if>
+			<if test="sddsc2 != null">
+				SDDSC2 = #{sddsc2,jdbcType=OTHER},
+			</if>
+		</set>
+		where SDN001 = #{sdn001,jdbcType=DECIMAL}
+		and SDDOCO = #{sddoco,jdbcType=DECIMAL}
+		and SDKCOO = #{sdkcoo,jdbcType=OTHER}
+		and SDDCTO = #{sddcto,jdbcType=OTHER}
+		and SDLNID = #{sdlnid,jdbcType=DECIMAL}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.eaju.entity.F554282">
+		update yajedi.F554282
+		set SDITM = #{sditm,jdbcType=DECIMAL},
+		SDLITM = #{sdlitm,jdbcType=OTHER},
+		SDDSC1 = #{sddsc1,jdbcType=OTHER},
+		SDUORG = #{sduorg,jdbcType=DECIMAL},
+		SDITVL = #{sditvl,jdbcType=DECIMAL},
+		SDITWT = #{sditwt,jdbcType=DECIMAL},
+		SDLOCN = #{sdlocn,jdbcType=OTHER},
+		SDDL01 = #{sddl01,jdbcType=OTHER},
+		SDPRP1 = #{sdprp1,jdbcType=OTHER},
+		SDDL02 = #{sddl02,jdbcType=OTHER},
+		SDDL03 = #{sddl03,jdbcType=OTHER},
+		SDDL04 = #{sddl04,jdbcType=OTHER},
+		SDUPRC = #{sduprc,jdbcType=DECIMAL},
+		SDAA1 = #{sdaa1,jdbcType=DECIMAL},
+		SDMCU = #{sdmcu,jdbcType=OTHER},
+		SDDC = #{sddc,jdbcType=OTHER},
+		SDMCU3 = #{sdmcu3,jdbcType=OTHER},
+		SDDC20 = #{sddc20,jdbcType=OTHER},
+		SDLOTN = #{sdlotn,jdbcType=OTHER},
+		SDVR01 = #{sdvr01,jdbcType=OTHER},
+		SDDL20 = #{sddl20,jdbcType=OTHER},
+		SDREMK = #{sdremk,jdbcType=OTHER},
+		SDSTYE = #{sdstye,jdbcType=OTHER},
+		SDN002 = #{sdn002,jdbcType=DECIMAL},
+		SDEDSP = #{sdedsp,jdbcType=OTHER},
+		SDUSER = #{sduser,jdbcType=OTHER},
+		SDPID = #{sdpid,jdbcType=OTHER},
+		SDUPMJ = #{sdupmj,jdbcType=DECIMAL},
+		SDUPMT = #{sdupmt,jdbcType=DECIMAL},
+		SDDL26 = #{sddl26,jdbcType=OTHER},
+		SDDL27 = #{sddl27,jdbcType=OTHER},
+		SDDL28 = #{sddl28,jdbcType=OTHER},
+		SDDL29 = #{sddl29,jdbcType=OTHER},
+		SDDATE01 = #{sddate01,jdbcType=DECIMAL},
+		SDDATE02 = #{sddate02,jdbcType=DECIMAL},
+		SDLOCNE1 = #{sdlocne1,jdbcType=OTHER},
+		SDDSC2 = #{sddsc2,jdbcType=OTHER}
+		where SDN001 = #{sdn001,jdbcType=DECIMAL}
+		and SDDOCO = #{sddoco,jdbcType=DECIMAL}
+		and SDKCOO = #{sdkcoo,jdbcType=OTHER}
+		and SDDCTO = #{sddcto,jdbcType=OTHER}
+		and SDLNID = #{sdlnid,jdbcType=DECIMAL}
+	</update>
+	<select id="selectByOrderId" resultMap="BaseResultMap">
+		SELECT O.ID,
+		I.PRODUCT_ID AS SDITM,
+		I.OUT_PRODUCT_SN AS SDLITM,
+		TRIM( I.PRODUCT_NAME ) AS SDDSC1,
+		I.PRODUCT_QUANTITY * 1000 AS SDUORG,
+		NULL AS SDITVL,<!-- 根据JDE的基础资料算出 -->
+		NULL AS SDITWT,<!-- 根据JDE的基础资料算出 -->
+		NULL AS SDLOCN,
+		NULL AS SDDL01,<!-- 根据JDE的基础资料算出 -->
+		NULL AS SDPRP1,<!-- 根据JDE的基础资料算出 -->
+		NULL AS SDDL02,<!-- 取UDC说明 -->
+		NULL AS SDDL03,
+		NULL AS SDDL04,
+		<!-- I.PRODUCT_PRICE*10000 AS SDUPRC, -->
+		0 SDUPRC ,
+		NULL AS SDAA1,
+		O.BDWAREHOUSE AS SDMCU,
+		D.NAME_ AS SDDC,
+		NULL AS SDMCU3,
+		NULL AS SDDC20,
+		I.LINE_NO AS SDLNID,
+		NULL AS SDLOTN,
+		NULL AS SDVR01,
+		NULL AS SDDL20,
+		NULL AS SDREMK,
+		I.ORDER_SN AS SDDOCO,
+		I.ORG_ID AS SDKCOO,
+		'SO' AS SDDCTO,
+		NULL AS SDN001,
+		NULL AS SDSTYE,
+		NULL AS SDN002,
+		'N' AS SDEDSP,
+		'FBS' AS SDUSER,
+		'FBS' AS SDPID,
+		to_number(substr(to_char(SYSDATE,'CCYYDDD'),2,6)) AS SDUPMJ,<!--F_DATETOJDE( SYSDATE ) 当前日期 -->
+		TO_NUMBER( TO_CHAR( SYSDATE , 'HH24MISS' ) ) AS SDUPMT <!-- 当前时间 -->
+		FROM FBS2.XX_ORDER_ITEM@APP_FBS2 I
+		LEFT JOIN FBS2.XX_ORDER@APP_FBS2 O ON (O.ID = I.ORDER_ID)
+		LEFT JOIN FBS2.BDF2_DEPT@APP_FBS2 D ON (D.ID_ = O.BDWAREHOUSE)
+		WHERE trim(O.ID) = #{orderId}
+	</select>
+</mapper>

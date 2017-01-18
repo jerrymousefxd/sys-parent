@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.mapper.TbOrderDetailMapper" >
+  <resultMap id="orderDetail" type="com.eaju.entity.TbOrderDetail" >
+    <result column="FID" property="fid" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_SN" property="orderSn" jdbcType="NUMERIC" />
+    <result column="LINE_NO" property="lineNo" jdbcType="NUMERIC" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="ORG_ID" property="orgId" jdbcType="NUMERIC" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="NUMERIC" />
+    <result column="OUT_PRODUCT_SN" property="outProductSn" jdbcType="VARCHAR" />
+    <result column="PRODUCT_SN" property="productSn" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_PRICE" property="productPrice" jdbcType="NUMERIC" />
+    <result column="SALES_PRICE" property="salesPrice" jdbcType="NUMERIC" />
+    <result column="PRODUCT_QUANTITY" property="productQuantity" jdbcType="NUMERIC" />
+    <result column="AMOUNT" property="amount" jdbcType="NUMERIC" />
+  </resultMap>
+ 
+  <insert id="insertTbOrderDetail" parameterType="com.eaju.entity.TbOrderDetail" >
+    insert into TB_ORDER_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        FID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderSn != null" >
+        ORDER_SN,
+      </if>
+      <if test="lineNo != null" >
+        LINE_NO,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="orgId != null" >
+        ORG_ID,
+      </if>
+      <if test="productId != null" >
+        PRODUCT_ID,
+      </if>
+      <if test="outProductSn != null" >
+        OUT_PRODUCT_SN,
+      </if>
+      <if test="productSn != null" >
+        PRODUCT_SN,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE,
+      </if>
+      <if test="salesPrice != null" >
+        SALES_PRICE,
+      </if>
+      <if test="productQuantity != null" >
+        PRODUCT_QUANTITY,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=NUMERIC},
+      </if>
+      <if test="lineNo != null" >
+        #{lineNo,jdbcType=NUMERIC},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=NUMERIC},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=NUMERIC},
+      </if>
+      <if test="outProductSn != null" >
+        #{outProductSn,jdbcType=VARCHAR},
+      </if>
+      <if test="productSn != null" >
+        #{productSn,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="salesPrice != null" >
+        #{salesPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="productQuantity != null" >
+        #{productQuantity,jdbcType=NUMERIC},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

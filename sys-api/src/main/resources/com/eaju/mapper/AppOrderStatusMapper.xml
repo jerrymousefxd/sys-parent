@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.mapper.AppOrderStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.eaju.entity.AppOrderStatus" >
+    <result column="TB_ID" property="tbid" jdbcType="NUMERIC" />
+    <result column="ORDER_TYPE" property="ordertype" jdbcType="VARCHAR" />
+    <result column="TB_OUT_ORDER_NO" property="outorderno" jdbcType="VARCHAR" />  
+ 	<result column="TB_CHECKSTATUS" property="checkstatus" jdbcType="NUMERIC" />
+ 	<result column="TB_OUT_STATUS" property="outstatus" jdbcType="VARCHAR" />
+ 	<result column="TB_IS_SUCCEESS" property="issuccess" jdbcType="NUMERIC" />
+ 	<result column="TB_TIMES" property="times" jdbcType="NUMERIC" />
+ 	<result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+ 	<result column="CREATE_TIME" property="createtime" jdbcType="DATE" />
+ 	<result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updatetime" jdbcType="DATE" />
+    <result column="PARAM_STATUS" property="paramstatus" jdbcType="NUMERIC" />
+  </resultMap>
+  
+  <insert id="insertAppOrderStatus" parameterType="com.eaju.entity.AppOrderStatus" >
+    insert into APP_ORDER_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        TB_ID,
+      <if test="ordertype != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="outorderno != null" >
+        TB_OUT_ORDER_NO,
+      </if>
+      <if test="checkstatus != null" >
+        TB_CHECKSTATUS,
+      </if>
+      <if test="outstatus != null" >
+        TB_OUT_STATUS,
+      </if>
+      <if test="issuccess != null" >
+        TB_IS_SUCCEESS,
+      </if>
+      <if test="times != null" >
+        TB_TIMES,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createtime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updator != null" >
+        UPDATOR,
+      </if>
+      <if test="updatetime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="paramstatus != null" >
+        PARAM_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+        PK_APP_ORDER_STATUS_TB_ID.NEXTVAL,
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="outorderno != null" >
+        #{outorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null" >
+        #{checkstatus,jdbcType=NUMERIC},
+      </if>
+      <if test="outstatus != null" >
+        #{outstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="issuccess != null" >
+        #{issuccess,jdbcType=NUMERIC},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=NUMERIC},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updator != null" >
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="paramstatus != null" >
+        #{paramstatus,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <sql id="where" >
+  	<where>
+		<if test="fid != null" >
+	    	FID=#{fid,jdbcType=VARCHAR}
+	    </if>
+		<if test="orderSn != null" >
+			and ORDER_SN=#{orderSn,jdbcType=NUMERIC}
+		</if>
+		<if test="orderType != null" >
+		  	and ORDER_TYPE=#{orderType,jdbcType=VARCHAR}
+		</if>
+		<if test="orgId != null" >
+		  	and ORG_ID=#{orgId,jdbcType=NUMERIC}
+		</if>
+		<if test="storeId != null" >
+		  	and STORE_ID=#{storeId,jdbcType=NUMERIC}
+		</if>
+		<if test="storeName != null" >
+		  	and STORE_NAME=#{storeName,jdbcType=VARCHAR}
+		</if>
+		<if test="warehouseId != null" >
+		  	and WAREHOUSE_ID=#{warehouseId,jdbcType=NUMERIC}
+		</if>
+		<if test="warehouseName != null" >
+		  	and WAREHOUSE_NAME=#{warehouseName,jdbcType=VARCHAR}
+		</if>
+		<if test="outOrderSn != null" >
+		  	and OUT_ORDER_SN=#{outOrderSn,jdbcType=VARCHAR}
+		</if>
+		<if test="checkstatus != null" >
+		  	and CHECKSTATUS=#{checkstatus,jdbcType=NUMERIC}
+		</if>
+		<if test="outStatus != null" >
+		  	and OUT_STATUS=#{outStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="ddDate != null" >
+		  	and DD_DATE=#{ddDate,jdbcType=DATE}
+		</if>
+		<if test="shDate != null" >
+		  	and SH_DATE=#{shDate,jdbcType=DATE}
+		</if>
+		<if test="memberId != null" >
+		  	and MEMBER_ID=#{memberId,jdbcType=VARCHAR}
+		</if>
+		<if test="memberCode != null" >
+		  	and MEMBER_CODE=#{memberCode,jdbcType=VARCHAR}
+		</if>
+		<if test="shipName != null" >
+		  	and SHIP_NAME=#{shipName,jdbcType=VARCHAR}
+		</if>
+		<if test="shipMobile != null" >
+		  	and SHIP_MOBILE=#{shipMobile,jdbcType=VARCHAR}
+		</if>
+		<if test="shipAddress != null" >
+		  	and SHIP_ADDRESS=#{shipAddress,jdbcType=VARCHAR}
+		</if>
+		<if test="totalProductPrice != null" >
+		  	and TOTAL_PRODUCT_PRICE=#{totalProductPrice,jdbcType=NUMERIC}
+		</if>
+		<if test="outCreateDate != null" >
+		  	and OUT_CREATE_DATE=#{outCreateDate,jdbcType=DATE}
+		</if>
+		<if test="createDate != null" >
+		  	and CREATE_DATE=#{createDate,jdbcType=DATE}
+		</if>
+		<if test="lrjdedate != null" >
+		  	and LRJDEDATE=#{lrjdedate,jdbcType=DATE}
+		</if>
+		<if test="ckDate != null" >
+		  	and CK_DATE=#{ckDate,jdbcType=DATE}
+		</if>
+		<if test="storesInvoiceId != null" >
+		 	and STORES_INVOICE_ID=#{storesInvoiceId,jdbcType=NUMERIC}
+		</if>
+		<if test="storesInvoiceName != null" >
+		 	and STORES_INVOICE_NAME=#{storesInvoiceName,jdbcType=VARCHAR}
+		</if>
+		<if test="storesWorkerName != null" >
+		  	and STORES_WORKER_NAME=#{storesWorkerName,jdbcType=VARCHAR}
+		</if>
+		<if test="needInstall != null" >
+		  	and NEED_INSTALL=#{needInstall,jdbcType=VARCHAR}
+		</if>
+		<if test="dispatchMemo != null" >
+		  	and DISPATCH_MEMO=#{dispatchMemo,jdbcType=VARCHAR}
+		</if>
+		<if test="dispatchSn != null" >
+		  	and DISPATCH_SN=#{dispatchSn,jdbcType=VARCHAR}
+		</if>
+		<if test="memo != null" >
+		  	and MEMO=#{memo,jdbcType=VARCHAR}
+		</if>
+		<if test="memo2 != null" >
+		  	and MEMO2=#{memo2,jdbcType=VARCHAR}
+		</if>
+		<if test="invoiceInfo != null" >
+		  	and INVOICE_INFO=#{invoiceInfo,jdbcType=VARCHAR}
+		</if>
+		<if test="workOrderId != null" >
+		  	and WORK_ORDER_ID=#{workOrderId,jdbcType=VARCHAR}
+		</if>
+		<if test="pushTime != null" >
+		  	and PUSH_TIME=#{pushTime}
+		</if>
+		<if test="deleteFlag != null" >
+		  	and DELETE_FLAG=#{deleteFlag,jdbcType=NUMERIC}
+		</if>
+		<if test="workOrderTime != null" >
+		  	and WORK_ORDER_TIME=#{workOrderTime,jdbcType=DATE}
+		</if>
+  	</where>
+  </sql>
+  
+  <select id="selectAppOrderStatus" resultMap="BaseResultMap">
+  	SELECT * FROM APP_ORDER_STATUS 
+  	<include refid="where" />
+  </select>
+  <update id="updateAppOrderStatus" parameterType="com.eaju.entity.AppOrderStatus">
+  
+  
+  </update>
+</mapper>

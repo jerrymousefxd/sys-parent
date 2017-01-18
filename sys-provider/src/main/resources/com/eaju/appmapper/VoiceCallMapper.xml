@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.VoiceCallMapper" >
+  <resultMap id="BaseResultMap" type="com.eaju.entity.VoiceCall" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PHONENUMBERFROM" property="phonenumberfrom" jdbcType="VARCHAR" />
+    <result column="PHONENUMBERTO" property="phonenumberto" jdbcType="VARCHAR" />
+    <result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+    <result column="ORIGINALORDERNO" property="originalorderno" jdbcType="VARCHAR" />
+    <result column="EOORORDERNO" property="eoororderno" jdbcType="VARCHAR" />
+    <result column="ETDLNO" property="etdlno" jdbcType="VARCHAR" />
+    <result column="CALLIDENTIFIER" property="callidentifier" jdbcType="VARCHAR" />
+    <result column="PHONEID1" property="phoneid1" jdbcType="VARCHAR" />
+    <result column="PHONEID2" property="phoneid2" jdbcType="VARCHAR" />
+    <result column="RECORDFILE" property="recordfile" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PHONENUMBERFROM, PHONENUMBERTO, LOGINNAME, ORIGINALORDERNO, EOORORDERNO, ETDLNO, 
+    CALLIDENTIFIER, PHONEID1, PHONEID2, RECORDFILE, CREATOR, CREATETIME, UPDATOR, UPDATETIME, 
+    STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eaju.entity.VoiceCallExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from VOICE_CALL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from VOICE_CALL
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from VOICE_CALL
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eaju.entity.VoiceCallExample" >
+    delete from VOICE_CALL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eaju.entity.VoiceCall" >
+  	<selectKey order="BEFORE" keyProperty="id" resultType="java.math.BigDecimal">
+  		select vcSeq.nextval as ids from dual
+  	</selectKey>
+    insert into VOICE_CALL (ID, PHONENUMBERFROM, PHONENUMBERTO, 
+      LOGINNAME, ORIGINALORDERNO, EOORORDERNO, 
+      ETDLNO, CALLIDENTIFIER, PHONEID1, 
+      PHONEID2, RECORDFILE, CREATOR, 
+      CREATETIME, UPDATOR, UPDATETIME, 
+      STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{phonenumberfrom,jdbcType=VARCHAR}, #{phonenumberto,jdbcType=VARCHAR}, 
+      #{loginname,jdbcType=VARCHAR}, #{originalorderno,jdbcType=VARCHAR}, #{eoororderno,jdbcType=VARCHAR}, 
+      #{etdlno,jdbcType=VARCHAR}, #{callidentifier,jdbcType=VARCHAR}, #{phoneid1,jdbcType=VARCHAR}, 
+      #{phoneid2,jdbcType=VARCHAR}, #{recordfile,jdbcType=VARCHAR}, 'interface', 
+      sysdate, 'interface', sysdate, 
+      '0')
+  </insert>
+  <insert id="insertSelective" parameterType="com.eaju.entity.VoiceCall" >
+    insert into VOICE_CALL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="phonenumberfrom != null" >
+        PHONENUMBERFROM,
+      </if>
+      <if test="phonenumberto != null" >
+        PHONENUMBERTO,
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME,
+      </if>
+      <if test="originalorderno != null" >
+        ORIGINALORDERNO,
+      </if>
+      <if test="eoororderno != null" >
+        EOORORDERNO,
+      </if>
+      <if test="etdlno != null" >
+        ETDLNO,
+      </if>
+      <if test="callidentifier != null" >
+        CALLIDENTIFIER,
+      </if>
+      <if test="phoneid1 != null" >
+        PHONEID1,
+      </if>
+      <if test="phoneid2 != null" >
+        PHONEID2,
+      </if>
+      <if test="recordfile != null" >
+        RECORDFILE,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="updator != null" >
+        UPDATOR,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="phonenumberfrom != null" >
+        #{phonenumberfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumberto != null" >
+        #{phonenumberto,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="originalorderno != null" >
+        #{originalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="eoororderno != null" >
+        #{eoororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="etdlno != null" >
+        #{etdlno,jdbcType=VARCHAR},
+      </if>
+      <if test="callidentifier != null" >
+        #{callidentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneid1 != null" >
+        #{phoneid1,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneid2 != null" >
+        #{phoneid2,jdbcType=VARCHAR},
+      </if>
+      <if test="recordfile != null" >
+        #{recordfile,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updator != null" >
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eaju.entity.VoiceCallExample" resultType="java.lang.Integer" >
+    select count(*) from VOICE_CALL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update VOICE_CALL
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.phonenumberfrom != null" >
+        PHONENUMBERFROM = #{record.phonenumberfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phonenumberto != null" >
+        PHONENUMBERTO = #{record.phonenumberto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginname != null" >
+        LOGINNAME = #{record.loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originalorderno != null" >
+        ORIGINALORDERNO = #{record.originalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eoororderno != null" >
+        EOORORDERNO = #{record.eoororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etdlno != null" >
+        ETDLNO = #{record.etdlno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callidentifier != null" >
+        CALLIDENTIFIER = #{record.callidentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneid1 != null" >
+        PHONEID1 = #{record.phoneid1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneid2 != null" >
+        PHONEID2 = #{record.phoneid2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordfile != null" >
+        RECORDFILE = #{record.recordfile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        CREATETIME = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.updator != null" >
+        UPDATOR = #{record.updator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        UPDATETIME = #{record.updatetime,jdbcType=DATE},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update VOICE_CALL
+    set ID = #{record.id,jdbcType=DECIMAL},
+      PHONENUMBERFROM = #{record.phonenumberfrom,jdbcType=VARCHAR},
+      PHONENUMBERTO = #{record.phonenumberto,jdbcType=VARCHAR},
+      LOGINNAME = #{record.loginname,jdbcType=VARCHAR},
+      ORIGINALORDERNO = #{record.originalorderno,jdbcType=VARCHAR},
+      EOORORDERNO = #{record.eoororderno,jdbcType=VARCHAR},
+      ETDLNO = #{record.etdlno,jdbcType=VARCHAR},
+      CALLIDENTIFIER = #{record.callidentifier,jdbcType=VARCHAR},
+      PHONEID1 = #{record.phoneid1,jdbcType=VARCHAR},
+      PHONEID2 = #{record.phoneid2,jdbcType=VARCHAR},
+      RECORDFILE = #{record.recordfile,jdbcType=VARCHAR},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=DATE},
+      UPDATOR = #{record.updator,jdbcType=VARCHAR},
+      UPDATETIME = #{record.updatetime,jdbcType=DATE},
+      STATUS = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eaju.entity.VoiceCall" >
+    update VOICE_CALL
+    <set >
+      <if test="phonenumberfrom != null" >
+        PHONENUMBERFROM = #{phonenumberfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumberto != null" >
+        PHONENUMBERTO = #{phonenumberto,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="originalorderno != null" >
+        ORIGINALORDERNO = #{originalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="eoororderno != null" >
+        EOORORDERNO = #{eoororderno,jdbcType=VARCHAR},
+      </if>
+      <if test="etdlno != null" >
+        ETDLNO = #{etdlno,jdbcType=VARCHAR},
+      </if>
+      <if test="callidentifier != null" >
+        CALLIDENTIFIER = #{callidentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneid1 != null" >
+        PHONEID1 = #{phoneid1,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneid2 != null" >
+        PHONEID2 = #{phoneid2,jdbcType=VARCHAR},
+      </if>
+      <if test="recordfile != null" >
+        RECORDFILE = #{recordfile,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updator != null" >
+        UPDATOR = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eaju.entity.VoiceCall" >
+    update VOICE_CALL
+    set PHONENUMBERFROM = #{phonenumberfrom,jdbcType=VARCHAR},
+      PHONENUMBERTO = #{phonenumberto,jdbcType=VARCHAR},
+      LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      ORIGINALORDERNO = #{originalorderno,jdbcType=VARCHAR},
+      EOORORDERNO = #{eoororderno,jdbcType=VARCHAR},
+      ETDLNO = #{etdlno,jdbcType=VARCHAR},
+      CALLIDENTIFIER = #{callidentifier,jdbcType=VARCHAR},
+      PHONEID1 = #{phoneid1,jdbcType=VARCHAR},
+      PHONEID2 = #{phoneid2,jdbcType=VARCHAR},
+      RECORDFILE = #{recordfile,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      UPDATOR = #{updator,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=DATE},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

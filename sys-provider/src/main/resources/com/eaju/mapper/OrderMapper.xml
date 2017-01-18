@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.mapper.OrderMapper">
+
+	<resultMap id="BosMap" type="java.util.HashMap">
+		<result column="OUT_ID" property="outId" />
+		<result column="SOURCE" property="source" />
+	</resultMap>
+	<resultMap id="BaseResultMap" type="com.eaju.entity.AllOrder">
+		<result column="ECCNAME" property="eccName" jdbcType="VARCHAR" />
+		<result column="ECCPHONE" property="eccPhone" jdbcType="VARCHAR" />
+		<result column="ECLNAME" property="eclName" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createTime" jdbcType="VARCHAR" />
+		<result column="ETDLNO" property="etdlNo" jdbcType="VARCHAR" />
+		<result column="EOATIME" property="eoaTime" jdbcType="VARCHAR" />
+		<result column="SIGNTIME" property="signTime" jdbcType="VARCHAR" />
+		<result column="ETDLENDTIME" property="etdlEndTime" jdbcType="VARCHAR" />
+		<result column="EVAL" property="eval" jdbcType="VARCHAR" />
+		<result column="EON" property="eon" jdbcType="VARCHAR" />
+		<result column="WLSTATUS" property="wlStatus" jdbcType="VARCHAR" />
+		<result column="WLACCEPTTIME" property="wlAcceptTime" jdbcType="VARCHAR" />
+		<result column="WLACCEPTSTATION" property="wlAcceptStation"
+			jdbcType="VARCHAR" />
+		<result column="TEACHNAME" property="teachName" jdbcType="VARCHAR" />
+		<result column="TEACHTEL" property="teachTel" jdbcType="VARCHAR" />
+		<result column="SUPNAME" property="supName" jdbcType="VARCHAR" />
+		<result column="SUPTEL" property="supTel" jdbcType="VARCHAR" />
+		<result column="EBCDTYPE" property="ebcdType" jdbcType="VARCHAR" />
+		<result column="EBCUCODE" property="ebcuCode" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BosOrderMap" type="com.eaju.entity.BosWorkOrders">
+		<result column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="ECCNAME" property="eccname" jdbcType="VARCHAR" />
+		<result column="ECCPHONE" property="eccphone" jdbcType="VARCHAR" />
+		<result column="ECLNAME" property="eclname" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="ETDLNO" property="etdlno" jdbcType="VARCHAR" />
+		<result column="EOATIME" property="eoatime" jdbcType="TIMESTAMP" />
+		<result column="SIGNTIME" property="signtime" jdbcType="TIMESTAMP" />
+		<result column="ETDLENDTIME" property="etdlendtime" jdbcType="TIMESTAMP" />
+		<result column="EVAL" property="eval" jdbcType="VARCHAR" />
+		<result column="EON" property="eon" jdbcType="VARCHAR" />
+		<result column="WLSTATUS" property="wlstatus" jdbcType="VARCHAR" />
+		<result column="WLACCEPTTIME" property="wlaccepttime" jdbcType="VARCHAR" />
+		<result column="WLACCEPTSTATION" property="wlacceptstation"
+			jdbcType="VARCHAR" />
+		<result column="TEACHNAME" property="teachname" jdbcType="VARCHAR" />
+		<result column="TEACHTEL" property="teachtel" jdbcType="VARCHAR" />
+		<result column="SUPNAME" property="supname" jdbcType="VARCHAR" />
+		<result column="SUPTEL" property="suptel" jdbcType="VARCHAR" />
+		<result column="EBCDTYPE" property="ebcdtype" jdbcType="VARCHAR" />
+		<result column="EBCUCODE" property="ebcucode" jdbcType="VARCHAR" />
+		<result column="SOURCE" property="source" jdbcType="VARCHAR" />
+		<result column="OUT_ID" property="outId" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+		<result column="CREATORTIME" property="creatortime" jdbcType="TIMESTAMP" />
+		<result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
+		<result column="UPDATORTIME" property="updatortime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="getAllOrderList" parameterType="java.util.HashMap"
+		resultMap="BosMap">
+		SELECT * FROM(
+		SELECT
+		A.*, ROWNUM rn
+		FROM
+		(SELECT OUT_ID ,SOURCE FROM YIANJU.BOS_WORK_ORDERS
+		WHERE
+		<if test='source=="huanai"'>
+			(EBCUCODE in
+			(select owner_code
+			from yajlmdm.CD_OWNER_GROUP_DETAIL
+			where OWNER_GROUP_CODE in
+			(select owner_Group_Code from yajlmdm.CD_OWNER_GROUP
+			WHERE owner_Group_Code='KH200058' and STATUS='0' and REC_STATUS=0))
+			OR EBCUCODE ='so' OR EBCUCODE is NULL)
+		</if>
+		<!-- 20161228 -->
+		<if test='source!="huanai"'>
+			(EBCUNAME LIKE '%${source}%'
+			<if test="name!=null">
+				OR
+				<foreach collection="name" item="nam" separator="OR">
+					EBCUNAME LIKE '%${nam}%'
+				</foreach>
+			</if>
+			<if test="code!=null">
+				OR
+				<foreach collection="code" item="cod" separator="OR">
+					EBCUCODE LIKE '%${cod}%'
+				</foreach>
+			</if>
+			OR EBCUNAME LIKE '%${source}%')
+		</if>
+
+		<!-- 20161228 -->
+		AND (
+		ECCNAME LIKE '%${keyWord}%'
+		OR ECCPHONE LIKE '%${keyWord}%'
+		OR ETDLNO LIKE '%${keyWord}%'
+		)
+		AND STATUS='0'
+		AND OUT_ID IS NOT NULL
+		AND SOURCE IS NOT NULL
+		ORDER BY CREATETIME DESC
+		) A
+		WHERE
+		ROWNUM <![CDATA[<=]]>
+		(#{end})
+		)
+		WHERE rn <![CDATA[>]]>
+		#{start}
+	</select>
+	<select id="getOrderByPrimary" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		ehd.ETHD_CONSIGNEE_CONTACT_NAME eccName, 			<!-- 收货人 -->
+		ehd.ETHD_CONSIGNEE_CONTACT_PHONE eccPhone, 	 		<!-- 电话 -->
+		ehd.ETHD_CONSIGNEE_LOCATION_NAME eclName,  			<!-- 收货人地址 -->
+		to_char(ehd.CREATE_TIME,'yyyy-mm-dd hh24:mi:ss') createTime,			<!-- 创建时间 -->
+		<!--ehdl.ETDL_NO etdlNo, 工单号 -->
+		ehd.ETHD_ORIGINAL_ORDER_NO etdlNo,<!--外部订单号 -->
+		to_char(ehdl.ETDL_ORDER_ARRIVAL_TIME,'yyyy-mm-dd hh24:mi:ss') eoaTime,		<!-- 
+			预约时间 -->
+		to_char(ehdl.ETDL_SIGN_TIME,'yyyy-mm-dd hh24:mi:ss') signTime,					 <!--签到时间 -->
+		to_char(ehdl.ETDL_END_TIME,'yyyy-mm-dd hh24:mi:ss') etdlEndTime,			<!-- 完成时间 -->
+		<!-- ehdv.CUSTOMER_EVAL eval, 评价 改为计分 -->
+		round((TO_NUMBER(ehdv.SATISFACTION1)+TO_NUMBER(ehdv.SATISFACTION2)+TO_NUMBER(ehdv.SATISFACTION3))/3,2)
+		eval,	<!--评价 -->
+		ehd.ETHD_ORDER_NO eon,						<!-- 订单号 -->
+		bwi.STATUS wlStatus,                       <!--物流订单状态 -->
+		bwi.ACCEPT_TIME wlAcceptTime,                 <!--物流签收时间 -->
+		bwi.ACCEPT_STATION wlAcceptStation,								<!--物流处理内容 -->
+		ehdl.ETDL_TEACHNOLOGIST_NAME teachName,       <!--技师名称 -->
+		ehdl.ETDL_TEACHNOLOGIST_TEL teachTel, 						<!--技师电话 -->
+		ehdl.ETDL_SUPPLIER_NAME supName,                 <!--服务商名称 -->
+		ship.CONTACTS_MOBILE supTel,                    <!--服务商联系方式 -->
+		etdltype.EBCD_NAME_CN ebcdType,						<!--派工单类型 -->
+		ehd.ETHD_CUSTOM_EBCU_CODE ebcuCode,          <!--商店编码 -->
+		ehd.ETHD_CUSTOM_EBCU_NAME_CN ebcuName           <!--商店名称 -->
+		FROM
+		yajtmszp.ET_HD_ORDER ehd
+		<!-- LEFT JOIN YIANJU.BOS_WL_INFO bwi ON ehd.ETHD_EXTERNAL_ORDER_NO =bwi.service_id --> <!--蚁安居订单号 -->
+		<!--20170113  -->
+		LEFT JOIN (SELECT * FROM BOS_WL_INFO b WHERE NOT EXISTS (SELECT 1 FROM BOS_WL_INFO A WHERE b.service_id = A.SERVICE_ID AND b.create_date &lt; A.CREATE_DATE))bwi ON ehd.ETHD_EXTERNAL_ORDER_NO =bwi.service_id 
+		<!--20170113  -->
+		LEFT JOIN yajtmszp.ET_HD_TASK eht on eht.ETHT_ORDER_NO =
+		ehd.ETHD_ORDER_NO   		<!--订单号 -->
+		LEFT JOIN yajtmszp.ET_HD_DISPATCH_LIST ehdl on
+		ehdl.ETDL_NO=eht.ETHT_DISPATCH_NO <!--工单号 -->
+		LEFT JOIN yajlmdm.EB_SUPPLIER ship on
+		ship.SUPPLIERS_CODE=ehdl.ETDL_SUPPLIER_CODE  <!--服务商编码 -->
+		LEFT JOIN yajtmszp.ET_HD_DISPATCH_VISITS ehdv ON ehdv.ETDL_NO
+		=ehdl.ETDL_NO       <!--工单号 -->
+		LEFT JOIN (select * from yajlmdm.eb_code_master where
+		ebcd_dictionary_type='SYS_DMS_ETDL_TYPE') etdltype on
+		etdltype.ebcd_code = ehdl.etdl_type
+		WHERE ehd.ETHD_ID=#{outId}
+	</select>
+	<select id="getOmsOrderByTime" resultMap="BosOrderMap">
+		SELECT
+		ehd.ETHD_CONSIGNEE_CONTACT_NAME eccName, 			<!-- 收货人 -->
+		ehd.ETHD_CONSIGNEE_CONTACT_PHONE eccPhone, 	 		<!-- 电话 -->
+		ehd.ETHD_CONSIGNEE_LOCATION_NAME eclName,  			<!-- 收货人地址 -->
+		ehd.CREATE_TIME createTime, 						<!-- 创建时间 -->
+		<!--ehdl.ETDL_NO etdlNo, 工单号 需求更改,外部订单号 -->
+		ehd.ETHD_ORIGINAL_ORDER_NO etdlNo,     <!--外部订单号 -->
+		ehdl.ETDL_ORDER_ARRIVAL_TIME eoaTime,		<!-- 预约时间 -->
+		ehdl.ETDL_SIGN_TIME signTime,				<!--签到时间 -->
+		ehdl.ETDL_END_TIME etdlEndTime,	<!-- 完成时间 -->
+		ehdv.CUSTOMER_EVAL eval,		<!-- 评价 -->
+		ehd.ETHD_ORDER_NO eon,						<!-- 订单号 -->
+		bwi.STATUS wlStatus,                      <!--物流订单状态 -->
+		bwi.ACCEPT_TIME wlAcceptTime,                 <!--物流签收时间 -->
+		bwi.ACCEPT_STATION wlAcceptStation,								<!--物流处理内容 -->
+		ehdl.ETDL_TEACHNOLOGIST_NAME teachName,       <!--技师名称 -->
+		ehdl.ETDL_TEACHNOLOGIST_TEL teachTel, 						<!--技师电话 -->
+		ehdl.ETDL_SUPPLIER_NAME supName,                 <!--服务商名称 -->
+		ship.EBSP_CONTACT_TEL supTel,                     <!--服务商联系方式 -->
+		etdltype.EBCD_NAME_CN ebcdType,				<!--派工单类型 -->
+		<!-- ehd.ETHD_CUSTOM_EBCU_NAME_CN ebcuCode, 需求更改 -->               <!--商店编码 -->
+		ehd.ETHD_CUSTOM_EBCU_CODE ebcuCode,               <!--商店编码 -->
+		ehd.ETHD_CUSTOM_EBCU_NAME_CN ebcuName,              <!--商店名称 -->
+		'oms' "source",
+		ehd.ETHD_ID out_id,
+		'0' status,
+		'interface' CREATOR,
+		SYSDATE creatortime,
+		NULL updator,
+		SYSDATE updatortime
+		FROM
+		yajtmszp.ET_HD_ORDER ehd
+		LEFT JOIN YIANJU.BOS_WL_INFO bwi ON ehd.ETHD_EXTERNAL_ORDER_NO =
+		bwi.service_id <!--蚁安居订单号 -->
+		LEFT JOIN yajtmszp.ET_HD_TASK eht on eht.ETHT_ORDER_NO =
+		ehd.ETHD_ORDER_NO   		<!--订单号 -->
+		LEFT JOIN yajtmszp.ET_HD_DISPATCH_LIST ehdl on
+		ehdl.ETDL_NO=eht.ETHT_DISPATCH_NO <!--工单号 -->
+		LEFT JOIN yajlmdm.eb_shipper ship on
+		ship.EBSP_SHIPPER_NO=ehdl.ETDL_SUPPLIER_CODE  <!--服务商编码 -->
+		LEFT JOIN yajtmszp.ET_HD_DISPATCH_VISITS ehdv ON ehdv.ETDL_NO
+		=ehdl.ETDL_NO       <!--工单号 -->
+		LEFT JOIN (select * from yajlmdm.eb_code_master where
+		ebcd_dictionary_type='SYS_DMS_ETDL_TYPE') etdltype on
+		etdltype.ebcd_code = ehdl.etdl_type
+		WHERE ehd.REC_STATUS=0 <!-- AND ehdl.ETDL_NO IS NOT NULL 去掉-->
+		AND ehd.CREATE_TIME &gt;=TO_DATE(#{begin},'yyyy-MM-dd hh24:mi:ss')
+		AND ehd.CREATE_TIME &lt;=TO_DATE(#{end},'yyyy-MM-dd hh24:mi:ss')
+	</select>
+	<select id="getAllOrderCount" resultType="int">
+		SELECT count(1) FROM yianju.BOS_WORK_ORDERS
+		WHERE <!-- EBCUCODE LIKE '%${source}%' -->
+		<if test='source=="huanai"'>
+			(EBCUCODE in
+			(select owner_code
+			from yajlmdm.CD_OWNER_GROUP_DETAIL
+			where OWNER_GROUP_CODE in
+			(select owner_Group_Code from yajlmdm.CD_OWNER_GROUP
+			WHERE owner_Group_Code='KH200058' and STATUS='0' and REC_STATUS=0))
+			OR EBCUCODE ='so' OR EBCUCODE is NULL)
+		</if>
+		<if test='source!="huanai"'>
+			(EBCUNAME LIKE '%${source}%'
+			<if test="name!=null">
+				OR
+				<foreach collection="name" item="nam" separator="OR">
+					EBCUNAME LIKE '%${nam}%'
+				</foreach>
+			</if>
+			<if test="code!=null">
+				OR
+				<foreach collection="code" item="cod" separator="OR">
+					EBCUCODE LIKE '%${cod}%'
+				</foreach>
+			</if>
+
+			OR EBCUNAME LIKE '%${source}%')
+		</if>
+		AND (
+		ECCNAME LIKE '%${keyWord}%'
+		OR ECCPHONE LIKE '%${keyWord}%'
+		OR ETDLNO LIKE '%${keyWord}%'
+		)
+		AND STATUS='0'
+		AND OUT_ID IS NOT NULL
+		AND SOURCE IS NOT NULL
+	</select>
+	<insert id="insertMidOrder" parameterType="com.eaju.pojo.OrderPojo">
+		insert into yajedi.MID_EO_STANDARD_ORDER(JOB_ID,SENDER,
+		RECEIVER,
+		CREATOR, CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME,
+		REC_VER,
+		REC_STATUS,
+		MESSAGE_TYPE,
+		EOOR_UPSYS_NO,
+		EOOR_LOGISTIC_NO,
+		EOOR_ORDER_TYPE_CODE,
+		EOOR_ORDER_TYPE_NAME,
+		EOOR_CONSIGNEE_NAME,
+		EOOR_CONSIGNEE_CONTACT_PHONE,
+		EOOR_CONSIGNEE_CONTACT_TEL,
+		EOOR_CONSIGNEE_LOCATION_NAME,
+		EOOR_REMARK,
+		EOOR_CUSTOMER_CODE,
+		EOOR_CUSTOMER_NAME,
+		EOOR_DELIERY_SETUP_TYPE,
+		EOOR_CONSIGNEE_PROVINCE_NAME,
+		EOOR_CONSIGNEE_CITY_NAME,
+		EOOR_CONSIGNEE_DISTRICT_NAME,
+		EDIFLAG,
+		EOOR_CANCLE_FLAG,
+		SITE_CODE,
+		SITE_NAME,
+		COMPANY_CODE,
+		COMPANY_NAME)
+		values
+		(yajedi.SEQ_MID_EO_STANDARD_ORDER.nextval,'BOS','OMS','1',SYSDATE,'1',SYSDATE,'1.0','0','Order',
+		#{upsysNo},<!-- 服务单号 四位随机数 -->
+		#{logisticNo},<!-- 商家系统的订单号 -->
+		#{orderTypeCode},<!-- 订单类型 -->
+		#{orderTypeName},<!-- 订单名称 -->
+		'收货人名称',
+		'收货人手机',
+		'收货人电话',
+		'收货人地址',
+		'备注备注备注',
+		'A0002149',
+		'美标（中国）有限公司',
+		'00',
+		'省',
+		'市',
+		'区',
+		'10',
+		'02',
+		'LMS0102',
+		'总部服务平台',
+		'xxxx',
+		'xxxxx')
+
+
+	</insert>
+</mapper>

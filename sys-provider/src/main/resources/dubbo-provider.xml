@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - Copyright 1999-2011 Alibaba Group. - - Licensed under the Apache License, 
+	Version 2.0 (the "License"); - you may not use this file except in compliance 
+	with the License. - You may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0 
+	- - Unless required by applicable law or agreed to in writing, software - 
+	distributed under the License is distributed on an "AS IS" BASIS, - WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the 
+	License for the specific language governing permissions and - limitations 
+	under the License. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="demo-provider" owner="programmer"
+		organization="dubbox" />
+	<dubbo:registry address="zookeeper://127.0.0.1:2181" />
+	<!-- <dubbo:registry address="zookeeper://10.0.0.149:2181"/> -->
+	<dubbo:annotation package="com.eaju" />
+	<dubbo:protocol name="dubbo" serialization="kryo"
+		optimizer="com.eaju.core.serialize.SerializationOptimizerImpl" />
+	<dubbo:protocol name="rest" server="tomcat" port="8888"
+		contextpath="services" accepts="500" threads="100"></dubbo:protocol>
+
+	<!-- 在接口实现类上加注解,可以去掉下面代码,2种方式实现. -->
+	<!-- <dubbo:service interface="com.eaju.facade.IBusinessServiceRest" ref="businessServiceRest" 
+		protocol="rest"/> <bean id="businessServiceRest" class="com.eaju.facadeImpl.BusinessServiceRest"></bean> -->
+
+	<!-- 关于验证validate="true"的使用,查看相关源码,扩展验证机制 -->
+	<!-- <dubbo:service interface="com.alibaba.dubbo.demo.user.facade.UserRestService" 
+		ref="userRestService" protocol="rest" validation="true"/> -->
+
+</beans>

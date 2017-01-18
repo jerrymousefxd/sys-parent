@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.AppProductMapper">
+
+	<resultMap id="BaseResultMap" type="com.eaju.entity.Product">
+		<result column="ethiNo" property="ethiNo" />
+		<result column="ethiName" property="ethiName" />
+		<result column="ethiQuantity" property="ethiQuantity" />
+		<result column="comGroupName" property="comGroupName" />
+		<result column="brand" property="brand" />
+	</resultMap>
+	<select id="getProductList" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		two.ORDER_SN ethiNo,				<!-- 订单号 -->
+		twoi.GOODS_NAME ethiName,					<!-- 商品名称 -->
+		twoi.QUANTITY ethiQuantity,				<!-- 件数 -->
+		twoi.ITEM_NAME comGroupName,		<!-- 品类 -->
+		two.STORE_NAME brand				<!-- 品牌 -->
+		FROM
+		TB_WORK_ORDER two
+		LEFT JOIN TB_WORK_ORDER_ITEM twoi ON two.FID=twoi.WORK_ORDER_ID
+
+		WHERE twoi.WORK_ORDER_ID =#{workOrderId}
+	</select>
+
+</mapper>

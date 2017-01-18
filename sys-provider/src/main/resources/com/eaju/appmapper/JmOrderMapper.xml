@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.JmOrderMapper">
+	<insert id="insertJmOrder" parameterType="com.eaju.pojo.JMOrder">
+		insert into JM_ORDER (ID, CASENUMBER, CUSTID,
+		CUSTNAME, MOBILE, PHONE,
+		NICKNAME, ORDERID, BUYTIME,
+		DELIVERTIME, CHANNEL, SHOP,
+		PROVINCE, CITY, DISTRICT,
+		ADDRESS, CONTACTNAME, CONTACTPHONE,
+		REQTIME, PRODUCTCODE, PRODUCTNAME,
+		QUANTITY, REQNOTE, EXPRESSCO,
+		EXPRESSNO, DELIVERID,
+		MEDIATYPE, CHANNELID, SYNCDT,
+		PRICE, SEQID, PCOUNT,
+		ASSETNUMBER)
+		values (JM_ORDER_SEQ.nextval, #{casenumber,jdbcType=VARCHAR},
+		#{custid,jdbcType=VARCHAR},
+		#{custname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{nickname,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR},
+		#{buytime,jdbcType=DATE},
+		#{delivertime,jdbcType=DATE}, #{channel,jdbcType=VARCHAR}, #{shop,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+		#{district,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{contactname,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR},
+		#{reqtime,jdbcType=DATE}, #{productcode,jdbcType=VARCHAR},
+		#{productname,jdbcType=VARCHAR},
+		#{quantity,jdbcType=VARCHAR}, #{reqnote,jdbcType=VARCHAR}, #{expressco,jdbcType=VARCHAR},
+		#{expressno,jdbcType=VARCHAR}, #{deliverid,jdbcType=VARCHAR},
+		#{mediatype,jdbcType=VARCHAR}, #{channelid,jdbcType=VARCHAR},
+		#{syncdt,jdbcType=DATE},
+		#{price,jdbcType=VARCHAR}, #{seqid,jdbcType=VARCHAR}, #{pcount,jdbcType=VARCHAR},
+		#{assetnumber,jdbcType=VARCHAR})
+	</insert>
+	<!-- <insert id="insertJmOrder" parameterType="com.eaju.pojo.JMOrder" > 
+		insert into JM_ORDER (ID, CASENUMBER, CUSTID, CUSTNAME, MOBILE, PHONE, NIKENAME, 
+		ORDERID, BUYTIME, DELIVERYTIME, CHANNEL, SHOP, PROVINCE, CITY, DISTRICT, 
+		ADDRESS, CONTRACTNAME, CONTRACTPHONE, REQTIME, PRODUCTCODE, PRODUCTNAME, 
+		QUANTITY, NOTE, EXPRESSCO, EXPRESSNO) values (JM_ORDER_SEQ.nextval, #{CASENUMBER,jdbcType=VARCHAR}, 
+		#{CUSTID,jdbcType=VARCHAR}, #{CUSTNAME,jdbcType=VARCHAR}, #{MOBILE,jdbcType=VARCHAR}, 
+		#{PHONE,jdbcType=VARCHAR}, #{NIKENAME,jdbcType=VARCHAR}, #{ORDERID,jdbcType=VARCHAR}, 
+		#{BUYTIME,jdbcType=DATE}, #{DELIVERYTIME,jdbcType=DATE}, #{CHANNEL,jdbcType=VARCHAR}, 
+		#{SHOP,jdbcType=VARCHAR}, #{PROVINCE,jdbcType=VARCHAR}, #{CITY,jdbcType=VARCHAR}, 
+		#{DISTRICT,jdbcType=VARCHAR}, #{ADDRESS,jdbcType=VARCHAR}, #{CONTRACTNAME,jdbcType=VARCHAR}, 
+		#{CONTRACTPHONE,jdbcType=VARCHAR}, #{REQTIME,jdbcType=DATE}, #{PRODUCTCODE,jdbcType=VARCHAR}, 
+		#{PRODUCTNAME,jdbcType=VARCHAR}, #{QUANTITY,jdbcType=VARCHAR}, #{NOTE,jdbcType=VARCHAR}, 
+		#{EXPRESSCO,jdbcType=VARCHAR}, #{EXPRESSNO,jdbcType=VARCHAR}) </insert> -->
+	<update id="updateJmOrder">
+		update JM_ORDER set param_status =1 where CASENUMBER=#{casenumber}
+	</update>
+	<select id="selectJmOrderGDH">
+		select distinct CASENUMBER from JM_ORDER where param_status=0
+	</select>
+	<!-- <select id="selectJmOrder" parameterType="com.eaju.pojo.JMOrder" resultType="java.util.HashMap"> 
+		select * from JM_ORDER where CASENUMBER= #{ID,jdbcType=VARCHAR} and CUSTID=#{CUSTID,jdbcType=VARCHAR} 
+		and CUSTNAME=#{CUSTNAME,jdbcType=VARCHAR} and MOBILE=#{MOBILE,jdbcType=VARCHAR} 
+		and PHONE=#{PHONE,jdbcType=VARCHAR} and NIKENAME= #{NIKENAME,jdbcType=VARCHAR} 
+		and ORDERID=#{ORDERID,jdbcType=VARCHAR} and BUYTIME=#{BUYTIME,jdbcType=DATE} 
+		and DELIVERYTIME=#{DELIVERYTIME,jdbcType=DATE} and CHANNEL=#{CHANNEL,jdbcType=VARCHAR} 
+		and SHOP=#{SHOP,jdbcType=VARCHAR} and PROVINCE=#{PROVINCE,jdbcType=VARCHAR} 
+		and CITY=#{CITY,jdbcType=VARCHAR} and DISTRICT=#{DISTRICT,jdbcType=VARCHAR} 
+		and ADDRESS=#{ADDRESS,jdbcType=VARCHAR}, and CONTRACTNAME=#{CONTRACTNAME,jdbcType=VARCHAR} 
+		and CONTRACTPHONE=#{CONTRACTPHONE,jdbcType=VARCHAR} and REQTIME=#{REQTIME,jdbcType=DATE} 
+		and PRODUCTCODE=#{PRODUCTCODE,jdbcType=VARCHAR} and PRODUCTNAME=#{PRODUCTNAME,jdbcType=VARCHAR} 
+		and QUANTITY=#{QUANTITY,jdbcType=VARCHAR}, and NOTE=#{NOTE,jdbcType=VARCHAR}, 
+		and EXPRESSCO=#{EXPRESSCO,jdbcType=VARCHAR}, and EXPRESSNO=#{EXPRESSNO,jdbcType=VARCHAR} 
+		and PARAM_STATUS=0 </select> -->
+	<select id="selectJmOrder" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select count(1) COUNT from JM_ORDER where seqid=#{seqid}
+	</select>
+</mapper>

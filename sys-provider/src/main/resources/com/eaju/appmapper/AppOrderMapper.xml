@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.AppOrderMapper">
+
+	<resultMap id="BaseResultMap" type="com.eaju.entity.AllOrder">
+		<result column="ECCNAME" property="eccName" jdbcType="VARCHAR" />
+		<result column="ECCPHONE" property="eccPhone" jdbcType="VARCHAR" />
+		<result column="ECLNAME" property="eclName" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createTime" jdbcType="VARCHAR" />
+		<result column="ETDLNO" property="etdlNo" jdbcType="VARCHAR" />
+		<result column="EOATIME" property="eoaTime" jdbcType="VARCHAR" />
+		<result column="SIGNTIME" property="signTime" jdbcType="VARCHAR" />
+		<result column="ETDLENDTIME" property="etdlEndTime" jdbcType="VARCHAR" />
+		<result column="EVAL" property="eval" jdbcType="VARCHAR" />
+		<result column="EON" property="eon" jdbcType="VARCHAR" />
+		<result column="WLSTATUS" property="wlStatus" jdbcType="VARCHAR" />
+		<result column="WLACCEPTTIME" property="wlAcceptTime" jdbcType="VARCHAR" />
+		<result column="WLACCEPTSTATION" property="wlAcceptStation"
+			jdbcType="VARCHAR" />
+		<result column="TEACHNAME" property="teachName" jdbcType="VARCHAR" />
+		<result column="TEACHTEL" property="teachTel" jdbcType="VARCHAR" />
+		<result column="SUPNAME" property="supName" jdbcType="VARCHAR" />
+		<result column="SUPTEL" property="supTel" jdbcType="VARCHAR" />
+		<result column="EBCDTYPE" property="ebcdType" jdbcType="VARCHAR" />
+		<result column="EBCUCODE" property="ebcuCode" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BosOrderMap" type="com.eaju.entity.BosWorkOrders">
+		<result column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="ECCNAME" property="eccname" jdbcType="VARCHAR" />
+		<result column="ECCPHONE" property="eccphone" jdbcType="VARCHAR" />
+		<result column="ECLNAME" property="eclname" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="ETDLNO" property="etdlno" jdbcType="VARCHAR" />
+		<result column="EOATIME" property="eoatime" jdbcType="TIMESTAMP" />
+		<result column="SIGNTIME" property="signtime" jdbcType="TIMESTAMP" />
+		<result column="ETDLENDTIME" property="etdlendtime" jdbcType="TIMESTAMP" />
+		<result column="EVAL" property="eval" jdbcType="VARCHAR" />
+		<result column="EON" property="eon" jdbcType="VARCHAR" />
+		<result column="WLSTATUS" property="wlstatus" jdbcType="VARCHAR" />
+		<result column="WLACCEPTTIME" property="wlaccepttime" jdbcType="VARCHAR" />
+		<result column="WLACCEPTSTATION" property="wlacceptstation"
+			jdbcType="VARCHAR" />
+		<result column="TEACHNAME" property="teachname" jdbcType="VARCHAR" />
+		<result column="TEACHTEL" property="teachtel" jdbcType="VARCHAR" />
+		<result column="SUPNAME" property="supname" jdbcType="VARCHAR" />
+		<result column="SUPTEL" property="suptel" jdbcType="VARCHAR" />
+		<result column="EBCDTYPE" property="ebcdtype" jdbcType="VARCHAR" />
+		<result column="EBCUCODE" property="ebcucode" jdbcType="VARCHAR" />
+		<result column="SOURCE" property="source" jdbcType="VARCHAR" />
+		<result column="OUT_ID" property="outId" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+		<result column="CREATORTIME" property="creatortime" jdbcType="TIMESTAMP" />
+		<result column="UPDATOR" property="updator" jdbcType="VARCHAR" />
+		<result column="UPDATORTIME" property="updatortime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<select id="findOrderByPrimary" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select two.cus_name eccName, 			<!-- 收货人 -->
+		two.cus_tel eccPhone, 	 		<!-- 电话 -->
+		two.cus_address eclName,  			<!-- 收货人地址 -->
+		to_char(two.bill_date,'yyyy-mm-dd hh24:mi:ss') createTime, <!-- 创建时间 -->
+		<!--two.work_no etdlNo, 工单号 -->
+		two.OUT_ORDER_SN etdlNo,  <!-- 外部订单号 -->
+		to_char(two.BOOKING_TIME,'yyyy-mm-dd hh24:mi:ss') eoaTime,<!-- 预约时间 -->
+		to_char(two.SING_TIME,'yyyy-mm-dd hh24:mi:ss') signTime,					 <!--签到时间 -->
+		to_char(two.COMPLETE_DATE,'yyyy-mm-dd hh24:mi:ss') etdlEndTime,			<!-- 完成时间 -->
+		<!--two.CUSTOMER_EVAL eval, 评价 修改为计分 -->
+		round((TO_NUMBER(two.SATISFACTION1)+TO_NUMBER(two.SATISFACTION2)+TO_NUMBER(two.SATISFACTION3))/3,2)
+		eval,
+		two.ORDER_SN eon,			<!-- 订单号 -->
+		NULL wlStatus,                      <!-- 物流订单状态 -->
+		NULL wlAcceptTime,                <!-- 物流签收时间 -->
+		NULL wlAcceptStation,								<!--物流处理内容 -->
+		two.MASTER_NAME teachName,      <!-- 技师名称 -->
+		two.MASTER_PHONE teachTel, 						<!--技师电话 -->
+		NULL suppliername,                <!--服务商名称 -->
+		NULL supTel,                     <!-- 服务商联系方式 -->
+		two."TYPE" ebcdType,				<!-- 派工单类型 -->
+		<!-- two.store_name ebcuCode -->          <!-- 商店编码 -->
+		torder.ORDER_TYPE ebcuCode,               <!-- 商店编码 -->
+		two.store_name ebcuName              <!-- 商店名称 -->
+		FROM TB_WORK_ORDER two
+		LEFT JOIN TB_ORDER torder ON
+		TWO.ORDER_ID=torder.FID
+		where two.fid=#{outId}
+	</select>
+	<select id="findAppOrderByTime" resultMap="BosOrderMap">
+		select two.cus_name eccName, 		<!-- 收货人 -->
+		two.cus_tel eccPhone, 	 		<!-- 电话 -->
+		two.cus_address eclName,  			<!-- 收货人地址 -->
+		two.bill_date createTime, 						<!-- 创建时间 -->
+		<!--two.work_no etdlNo, 需求变更 外部订单号 工单号 -->
+		two.OUT_ORDER_SN etdlNo,  <!-- 外部订单号 -->
+		two.BOOKING_TIME eoaTime,<!-- 预约时间 -->
+		two.SING_TIME signTime,	 <!--签到时间 -->
+		two.COMPLETE_DATE etdlEndTime,<!-- 完成时间 -->
+		<!--two.CUSTOMER_EVAL eval, 评价 修改为计分 -->
+		round((TO_NUMBER(two.SATISFACTION1)+TO_NUMBER(two.SATISFACTION2)+TO_NUMBER(two.SATISFACTION3))/3,2)
+		eval,   <!--评价 -->
+		two.ORDER_SN eon,			<!-- 订单号 -->
+		NULL wlStatus,                       <!--物流订单状态 -->
+		NULL wlAcceptTime,                 <!--物流签收时间 -->
+		NULL wlAcceptStation,				<!--物流处理内容 -->
+		two.MASTER_NAME teachName,       <!--技师名称 -->
+		two.MASTER_PHONE teachTel, 	<!--技师电话 -->
+		NUll suppliername,     <!--服务商名称 -->
+		NULL supTel,                    <!--服务商联系方式 -->
+		two."TYPE" ebcdType,	<!--派工单类型 -->
+		<!-- two.store_name ebcuCode, 需求改变修改 -->
+		torder.ORDER_TYPE ebcuCode,              <!--商店编码 -->
+		two.store_name ebcuName,              <!--商店名称 -->
+		'app' "source",
+		two.fid out_id,
+		'0' status,
+		'interface' CREATOR,
+		SYSDATE creatortime,
+		NULL updator,
+		SYSDATE updatortime
+		FROM TB_WORK_ORDER two
+		LEFT JOIN TB_ORDER torder ON TWO.ORDER_ID=torder.FID
+		WHERE two.bill_date
+		&gt;=TO_DATE(#{begin},'yyyy-MM-dd hh24:mi:ss')
+		and two.bill_date &lt;=TO_DATE(#{end},'yyyy-MM-dd hh24:mi:ss')
+	</select>
+</mapper>

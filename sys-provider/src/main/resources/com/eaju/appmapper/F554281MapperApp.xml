@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.appmapper.F554281MapperApp">
+	<resultMap id="BaseResultMap" type="com.eaju.entity.F554281">
+		<id column="SON001" property="son001" jdbcType="DECIMAL" />
+		<id column="SOKCOO" property="sokcoo" jdbcType="OTHER" />
+		<id column="SODOCO" property="sodoco" jdbcType="DECIMAL" />
+		<id column="SODCTO" property="sodcto" jdbcType="OTHER" />
+		<result column="ID" property="orderId" jdbcType="OTHER" />
+		<result column="SO55SE" property="so55se" jdbcType="OTHER" />
+		<result column="SOCPN1" property="socpn1" jdbcType="OTHER" />
+		<result column="SOVR01" property="sovr01" jdbcType="OTHER" />
+		<result column="SO55LY" property="so55ly" jdbcType="OTHER" />
+		<result column="SODL01" property="sodl01" jdbcType="OTHER" />
+		<result column="SODL02" property="sodl02" jdbcType="OTHER" />
+		<result column="SODRQJ" property="sodrqj" jdbcType="DECIMAL" />
+		<result column="SODL24" property="sodl24" jdbcType="OTHER" />
+		<result column="SODC" property="sodc" jdbcType="OTHER" />
+		<result column="SOSTYE" property="sostye" jdbcType="OTHER" />
+		<result column="SOTYPT" property="sotypt" jdbcType="OTHER" />
+		<result column="SO55CY" property="so55cy" jdbcType="OTHER" />
+		<result column="SOALPH3" property="soalph3" jdbcType="OTHER" />
+		<result column="SOAAID" property="soaaid" jdbcType="DECIMAL" />
+		<result column="SODL03" property="sodl03" jdbcType="OTHER" />
+		<result column="SOTPUR" property="sotpur" jdbcType="OTHER" />
+		<result column="SOA" property="soa" jdbcType="OTHER" />
+		<result column="SOALPH" property="soalph" jdbcType="OTHER" />
+		<result column="SOPH1" property="soph1" jdbcType="OTHER" />
+		<result column="SOADDS" property="soadds" jdbcType="OTHER" />
+		<result column="SONAME" property="soname" jdbcType="OTHER" />
+		<result column="SOADDZ" property="soaddz" jdbcType="OTHER" />
+		<result column="SONAMEE" property="sonamee" jdbcType="OTHER" />
+		<result column="SOCOUN" property="socoun" jdbcType="OTHER" />
+		<result column="SONAMED" property="sonamed" jdbcType="OTHER" />
+		<result column="SOADD1" property="soadd1" jdbcType="OTHER" />
+		<result column="SOALPH2" property="soalph2" jdbcType="OTHER" />
+		<result column="SOPH2" property="soph2" jdbcType="OTHER" />
+		<result column="SOPH3" property="soph3" jdbcType="OTHER" />
+		<result column="SOELM01" property="soelm01" jdbcType="OTHER" />
+		<result column="SOWHO1" property="sowho1" jdbcType="OTHER" />
+		<result column="SOELM02" property="soelm02" jdbcType="OTHER" />
+		<result column="SOWHO2" property="sowho2" jdbcType="OTHER" />
+		<result column="SOELM03" property="soelm03" jdbcType="OTHER" />
+		<result column="SOWHO3" property="sowho3" jdbcType="OTHER" />
+		<result column="SOADD2" property="soadd2" jdbcType="OTHER" />
+		<result column="SOFIL2" property="sofil2" jdbcType="OTHER" />
+		<result column="SOFIL3" property="sofil3" jdbcType="OTHER" />
+		<result column="SOA105" property="soa105" jdbcType="OTHER" />
+		<result column="SOAA" property="soaa" jdbcType="DECIMAL" />
+		<result column="SOAEXP" property="soaexp" jdbcType="DECIMAL" />
+		<result column="SOA106" property="soa106" jdbcType="OTHER" />
+		<result column="SON002" property="son002" jdbcType="DECIMAL" />
+		<result column="SOSRS2" property="sosrs2" jdbcType="OTHER" />
+		<result column="SOEDSP" property="soedsp" jdbcType="OTHER" />
+		<result column="SOMGTX" property="somgtx" jdbcType="OTHER" />
+		<result column="SOD200" property="sod200" jdbcType="OTHER" />
+		<result column="SOUSER" property="souser" jdbcType="OTHER" />
+		<result column="SOPID" property="sopid" jdbcType="OTHER" />
+		<result column="SOUPMJ" property="soupmj" jdbcType="DECIMAL" />
+		<result column="SOUPMT" property="soupmt" jdbcType="DECIMAL" />
+		<result column="SODL20" property="sodl20" jdbcType="OTHER" />
+		<result column="SODL21" property="sodl21" jdbcType="OTHER" />
+		<result column="SODL22" property="sodl22" jdbcType="OTHER" />
+		<result column="SODL23" property="sodl23" jdbcType="OTHER" />
+		<result column="SODATE01" property="sodate01" jdbcType="DECIMAL" />
+		<result column="SODATE02" property="sodate02" jdbcType="DECIMAL" />
+		<result column="SODOC2" property="sodoc2" jdbcType="DECIMAL" />
+		<result column="SOROUT" property="sorout" jdbcType="OTHER" />
+		<result column="SOMCU" property="somcu" jdbcType="OTHER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		SON001, SOKCOO, SODOCO, SODCTO, SO55SE, SOCPN1, SOVR01, SO55LY, SODL01,
+		SODL02, SODRQJ,
+		SODL24, SODC, SOSTYE, SOTYPT, SO55CY, SOALPH3, SOAAID, SODL03, SOTPUR, SOA,
+		SOALPH,
+		SOPH1, SOADDS, SONAME, SOADDZ, SONAMEE, SOCOUN, SONAMED, SOADD1, SOALPH2,
+		SOPH2,
+		SOPH3, SOELM01, SOWHO1, SOELM02, SOWHO2, SOELM03, SOWHO3, SOADD2, SOFIL2,
+		SOFIL3,
+		SOA105, SOAA, SOAEXP, SOA106, SON002, SOSRS2, SOEDSP, SOMGTX, SOD200, SOUSER,
+		SOPID,
+		SOUPMJ, SOUPMT, SODL20, SODL21, SODL22, SODL23, SODATE01, SODATE02, SODOC2,
+		SOROUT,
+		SOMCU
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.eaju.entity.F554281Example">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from yajedi.F554281
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="com.eaju.entity.F554281Key">
+		select
+		<include refid="Base_Column_List" />
+		from yajedi.F554281
+		where SON001 = #{son001,jdbcType=DECIMAL}
+		and SOKCOO = #{sokcoo,jdbcType=OTHER}
+		and SODOCO = #{sodoco,jdbcType=DECIMAL}
+		and SODCTO = #{sodcto,jdbcType=OTHER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.eaju.entity.F554281Key">
+		delete from yajedi.F554281
+		where SON001 = #{son001,jdbcType=DECIMAL}
+		and SOKCOO = #{sokcoo,jdbcType=OTHER}
+		and SODOCO = #{sodoco,jdbcType=DECIMAL}
+		and SODCTO = #{sodcto,jdbcType=OTHER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.eaju.entity.F554281Example">
+		delete from yajedi.F554281
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.eaju.entity.F554281">
+		insert into yajedi.F554281 (SON001, SOKCOO, SODOCO,
+		SODCTO, SO55SE, SOCPN1, SOVR01,
+		SO55LY, SODL01, SODL02, SODRQJ,
+		SODL24, SODC, SOSTYE, SOTYPT,
+		SO55CY, SOALPH3, SOAAID,
+		SODL03, SOTPUR, SOA, SOALPH,
+		SOPH1, SOADDS, SONAME, SOADDZ,
+		SONAMEE, SOCOUN, SONAMED,
+		SOADD1, SOALPH2, SOPH2, SOPH3,
+		SOELM01, SOWHO1, SOELM02,
+		SOWHO2, SOELM03, SOWHO3,
+		SOADD2, SOFIL2, SOFIL3, SOA105,
+		SOAA, SOAEXP, SOA106,
+		SON002, SOSRS2, SOEDSP,
+		SOMGTX, SOD200, SOUSER, SOPID,
+		SOUPMJ, SOUPMT, SODL20,
+		SODL21, SODL22, SODL23, SODATE01,
+		SODATE02, SODOC2, SOROUT,
+		SOMCU)
+		values (#{son001,jdbcType=DECIMAL}, #{sokcoo,jdbcType=VARCHAR},
+		#{sodoco,jdbcType=DECIMAL},
+		#{sodcto,jdbcType=VARCHAR}, #{so55se,jdbcType=VARCHAR}, #{socpn1,jdbcType=VARCHAR},
+		#{sovr01,jdbcType=VARCHAR},
+		#{so55ly,jdbcType=VARCHAR}, #{sodl01,jdbcType=VARCHAR}, #{sodl02,jdbcType=VARCHAR},
+		#{sodrqj,jdbcType=DECIMAL},
+		#{sodl24,jdbcType=VARCHAR}, #{sodc,jdbcType=VARCHAR}, #{sostye,jdbcType=VARCHAR},
+		#{sotypt,jdbcType=VARCHAR},
+		#{so55cy,jdbcType=VARCHAR}, #{soalph3,jdbcType=VARCHAR}, #{soaaid,jdbcType=DECIMAL},
+		#{sodl03,jdbcType=VARCHAR}, #{sotpur,jdbcType=VARCHAR},
+		#{soa,jdbcType=VARCHAR}, #{soalph,jdbcType=VARCHAR},
+		#{soph1,jdbcType=VARCHAR}, #{soadds,jdbcType=VARCHAR},
+		#{soname,jdbcType=VARCHAR}, #{soaddz,jdbcType=VARCHAR},
+		#{sonamee,jdbcType=VARCHAR}, #{socoun,jdbcType=VARCHAR},
+		#{sonamed,jdbcType=VARCHAR},
+		#{soadd1,jdbcType=VARCHAR}, #{soalph2,jdbcType=VARCHAR}, #{soph2,jdbcType=VARCHAR},
+		#{soph3,jdbcType=VARCHAR},
+		#{soelm01,jdbcType=VARCHAR}, #{sowho1,jdbcType=VARCHAR}, #{soelm02,jdbcType=VARCHAR},
+		#{sowho2,jdbcType=VARCHAR}, #{soelm03,jdbcType=VARCHAR},
+		#{sowho3,jdbcType=VARCHAR},
+		#{soadd2,jdbcType=VARCHAR}, #{sofil2,jdbcType=VARCHAR}, #{sofil3,jdbcType=VARCHAR},
+		#{soa105,jdbcType=VARCHAR},
+		#{soaa,jdbcType=DECIMAL}, #{soaexp,jdbcType=DECIMAL}, #{soa106,jdbcType=VARCHAR},
+		#{son002,jdbcType=DECIMAL}, #{sosrs2,jdbcType=VARCHAR},
+		#{soedsp,jdbcType=VARCHAR},
+		#{somgtx,jdbcType=VARCHAR}, #{sod200,jdbcType=VARCHAR}, #{souser,jdbcType=VARCHAR},
+		#{sopid,jdbcType=VARCHAR},
+		#{soupmj,jdbcType=DECIMAL}, #{soupmt,jdbcType=DECIMAL}, #{sodl20,jdbcType=VARCHAR},
+		#{sodl21,jdbcType=VARCHAR}, #{sodl22,jdbcType=VARCHAR},
+		#{sodl23,jdbcType=VARCHAR}, #{sodate01,jdbcType=DECIMAL},
+		#{sodate02,jdbcType=DECIMAL}, #{sodoc2,jdbcType=DECIMAL},
+		#{sorout,jdbcType=VARCHAR},
+		#{somcu,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.eaju.entity.F554281">
+		insert into yajedi.F554281
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="son001 != null">
+				SON001,
+			</if>
+			<if test="sokcoo != null">
+				SOKCOO,
+			</if>
+			<if test="sodoco != null">
+				SODOCO,
+			</if>
+			<if test="sodcto != null">
+				SODCTO,
+			</if>
+			<if test="so55se != null">
+				SO55SE,
+			</if>
+			<if test="socpn1 != null">
+				SOCPN1,
+			</if>
+			<if test="sovr01 != null">
+				SOVR01,
+			</if>
+			<if test="so55ly != null">
+				SO55LY,
+			</if>
+			<if test="sodl01 != null">
+				SODL01,
+			</if>
+			<if test="sodl02 != null">
+				SODL02,
+			</if>
+			<if test="sodrqj != null">
+				SODRQJ,
+			</if>
+			<if test="sodl24 != null">
+				SODL24,
+			</if>
+			<if test="sodc != null">
+				SODC,
+			</if>
+			<if test="sostye != null">
+				SOSTYE,
+			</if>
+			<if test="sotypt != null">
+				SOTYPT,
+			</if>
+			<if test="so55cy != null">
+				SO55CY,
+			</if>
+			<if test="soalph3 != null">
+				SOALPH3,
+			</if>
+			<if test="soaaid != null">
+				SOAAID,
+			</if>
+			<if test="sodl03 != null">
+				SODL03,
+			</if>
+			<if test="sotpur != null">
+				SOTPUR,
+			</if>
+			<if test="soa != null">
+				SOA,
+			</if>
+			<if test="soalph != null">
+				SOALPH,
+			</if>
+			<if test="soph1 != null">
+				SOPH1,
+			</if>
+			<if test="soadds != null">
+				SOADDS,
+			</if>
+			<if test="soname != null">
+				SONAME,
+			</if>
+			<if test="soaddz != null">
+				SOADDZ,
+			</if>
+			<if test="sonamee != null">
+				SONAMEE,
+			</if>
+			<if test="socoun != null">
+				SOCOUN,
+			</if>
+			<if test="sonamed != null">
+				SONAMED,
+			</if>
+			<if test="soadd1 != null">
+				SOADD1,
+			</if>
+			<if test="soalph2 != null">
+				SOALPH2,
+			</if>
+			<if test="soph2 != null">
+				SOPH2,
+			</if>
+			<if test="soph3 != null">
+				SOPH3,
+			</if>
+			<if test="soelm01 != null">
+				SOELM01,
+			</if>
+			<if test="sowho1 != null">
+				SOWHO1,
+			</if>
+			<if test="soelm02 != null">
+				SOELM02,
+			</if>
+			<if test="sowho2 != null">
+				SOWHO2,
+			</if>
+			<if test="soelm03 != null">
+				SOELM03,
+			</if>
+			<if test="sowho3 != null">
+				SOWHO3,
+			</if>
+			<if test="soadd2 != null">
+				SOADD2,
+			</if>
+			<if test="sofil2 != null">
+				SOFIL2,
+			</if>
+			<if test="sofil3 != null">
+				SOFIL3,
+			</if>
+			<if test="soa105 != null">
+				SOA105,
+			</if>
+			<if test="soaa != null">
+				SOAA,
+			</if>
+			<if test="soaexp != null">
+				SOAEXP,
+			</if>
+			<if test="soa106 != null">
+				SOA106,
+			</if>
+			<if test="son002 != null">
+				SON002,
+			</if>
+			<if test="sosrs2 != null">
+				SOSRS2,
+			</if>
+			<if test="soedsp != null">
+				SOEDSP,
+			</if>
+			<if test="somgtx != null">
+				SOMGTX,
+			</if>
+			<if test="sod200 != null">
+				SOD200,
+			</if>
+			<if test="souser != null">
+				SOUSER,
+			</if>
+			<if test="sopid != null">
+				SOPID,
+			</if>
+			<if test="soupmj != null">
+				SOUPMJ,
+			</if>
+			<if test="soupmt != null">
+				SOUPMT,
+			</if>
+			<if test="sodl20 != null">
+				SODL20,
+			</if>
+			<if test="sodl21 != null">
+				SODL21,
+			</if>
+			<if test="sodl22 != null">
+				SODL22,
+			</if>
+			<if test="sodl23 != null">
+				SODL23,
+			</if>
+			<if test="sodate01 != null">
+				SODATE01,
+			</if>
+			<if test="sodate02 != null">
+				SODATE02,
+			</if>
+			<if test="sodoc2 != null">
+				SODOC2,
+			</if>
+			<if test="sorout != null">
+				SOROUT,
+			</if>
+			<if test="somcu != null">
+				SOMCU,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="son001 != null">
+				#{son001,jdbcType=DECIMAL},
+			</if>
+			<if test="sokcoo != null">
+				#{sokcoo,jdbcType=OTHER},
+			</if>
+			<if test="sodoco != null">
+				#{sodoco,jdbcType=DECIMAL},
+			</if>
+			<if test="sodcto != null">
+				#{sodcto,jdbcType=OTHER},
+			</if>
+			<if test="so55se != null">
+				#{so55se,jdbcType=OTHER},
+			</if>
+			<if test="socpn1 != null">
+				#{socpn1,jdbcType=OTHER},
+			</if>
+			<if test="sovr01 != null">
+				#{sovr01,jdbcType=OTHER},
+			</if>
+			<if test="so55ly != null">
+				#{so55ly,jdbcType=OTHER},
+			</if>
+			<if test="sodl01 != null">
+				#{sodl01,jdbcType=OTHER},
+			</if>
+			<if test="sodl02 != null">
+				#{sodl02,jdbcType=OTHER},
+			</if>
+			<if test="sodrqj != null">
+				#{sodrqj,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl24 != null">
+				#{sodl24,jdbcType=OTHER},
+			</if>
+			<if test="sodc != null">
+				#{sodc,jdbcType=OTHER},
+			</if>
+			<if test="sostye != null">
+				#{sostye,jdbcType=OTHER},
+			</if>
+			<if test="sotypt != null">
+				#{sotypt,jdbcType=OTHER},
+			</if>
+			<if test="so55cy != null">
+				#{so55cy,jdbcType=OTHER},
+			</if>
+			<if test="soalph3 != null">
+				#{soalph3,jdbcType=OTHER},
+			</if>
+			<if test="soaaid != null">
+				#{soaaid,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl03 != null">
+				#{sodl03,jdbcType=OTHER},
+			</if>
+			<if test="sotpur != null">
+				#{sotpur,jdbcType=OTHER},
+			</if>
+			<if test="soa != null">
+				#{soa,jdbcType=OTHER},
+			</if>
+			<if test="soalph != null">
+				#{soalph,jdbcType=OTHER},
+			</if>
+			<if test="soph1 != null">
+				#{soph1,jdbcType=OTHER},
+			</if>
+			<if test="soadds != null">
+				#{soadds,jdbcType=OTHER},
+			</if>
+			<if test="soname != null">
+				#{soname,jdbcType=OTHER},
+			</if>
+			<if test="soaddz != null">
+				#{soaddz,jdbcType=OTHER},
+			</if>
+			<if test="sonamee != null">
+				#{sonamee,jdbcType=OTHER},
+			</if>
+			<if test="socoun != null">
+				#{socoun,jdbcType=OTHER},
+			</if>
+			<if test="sonamed != null">
+				#{sonamed,jdbcType=OTHER},
+			</if>
+			<if test="soadd1 != null">
+				#{soadd1,jdbcType=OTHER},
+			</if>
+			<if test="soalph2 != null">
+				#{soalph2,jdbcType=OTHER},
+			</if>
+			<if test="soph2 != null">
+				#{soph2,jdbcType=OTHER},
+			</if>
+			<if test="soph3 != null">
+				#{soph3,jdbcType=OTHER},
+			</if>
+			<if test="soelm01 != null">
+				#{soelm01,jdbcType=OTHER},
+			</if>
+			<if test="sowho1 != null">
+				#{sowho1,jdbcType=OTHER},
+			</if>
+			<if test="soelm02 != null">
+				#{soelm02,jdbcType=OTHER},
+			</if>
+			<if test="sowho2 != null">
+				#{sowho2,jdbcType=OTHER},
+			</if>
+			<if test="soelm03 != null">
+				#{soelm03,jdbcType=OTHER},
+			</if>
+			<if test="sowho3 != null">
+				#{sowho3,jdbcType=OTHER},
+			</if>
+			<if test="soadd2 != null">
+				#{soadd2,jdbcType=OTHER},
+			</if>
+			<if test="sofil2 != null">
+				#{sofil2,jdbcType=OTHER},
+			</if>
+			<if test="sofil3 != null">
+				#{sofil3,jdbcType=OTHER},
+			</if>
+			<if test="soa105 != null">
+				#{soa105,jdbcType=OTHER},
+			</if>
+			<if test="soaa != null">
+				#{soaa,jdbcType=DECIMAL},
+			</if>
+			<if test="soaexp != null">
+				#{soaexp,jdbcType=DECIMAL},
+			</if>
+			<if test="soa106 != null">
+				#{soa106,jdbcType=OTHER},
+			</if>
+			<if test="son002 != null">
+				#{son002,jdbcType=DECIMAL},
+			</if>
+			<if test="sosrs2 != null">
+				#{sosrs2,jdbcType=OTHER},
+			</if>
+			<if test="soedsp != null">
+				#{soedsp,jdbcType=OTHER},
+			</if>
+			<if test="somgtx != null">
+				#{somgtx,jdbcType=OTHER},
+			</if>
+			<if test="sod200 != null">
+				#{sod200,jdbcType=OTHER},
+			</if>
+			<if test="souser != null">
+				#{souser,jdbcType=OTHER},
+			</if>
+			<if test="sopid != null">
+				#{sopid,jdbcType=OTHER},
+			</if>
+			<if test="soupmj != null">
+				#{soupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="soupmt != null">
+				#{soupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl20 != null">
+				#{sodl20,jdbcType=OTHER},
+			</if>
+			<if test="sodl21 != null">
+				#{sodl21,jdbcType=OTHER},
+			</if>
+			<if test="sodl22 != null">
+				#{sodl22,jdbcType=OTHER},
+			</if>
+			<if test="sodl23 != null">
+				#{sodl23,jdbcType=OTHER},
+			</if>
+			<if test="sodate01 != null">
+				#{sodate01,jdbcType=DECIMAL},
+			</if>
+			<if test="sodate02 != null">
+				#{sodate02,jdbcType=DECIMAL},
+			</if>
+			<if test="sodoc2 != null">
+				#{sodoc2,jdbcType=DECIMAL},
+			</if>
+			<if test="sorout != null">
+				#{sorout,jdbcType=OTHER},
+			</if>
+			<if test="somcu != null">
+				#{somcu,jdbcType=OTHER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.eaju.entity.F554281Example"
+		resultType="java.lang.Integer">
+		select count(*) from yajedi.F554281
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update yajedi.F554281
+		<set>
+			<if test="record.son001 != null">
+				SON001 = #{record.son001,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sokcoo != null">
+				SOKCOO = #{record.sokcoo,jdbcType=OTHER},
+			</if>
+			<if test="record.sodoco != null">
+				SODOCO = #{record.sodoco,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodcto != null">
+				SODCTO = #{record.sodcto,jdbcType=OTHER},
+			</if>
+			<if test="record.so55se != null">
+				SO55SE = #{record.so55se,jdbcType=OTHER},
+			</if>
+			<if test="record.socpn1 != null">
+				SOCPN1 = #{record.socpn1,jdbcType=OTHER},
+			</if>
+			<if test="record.sovr01 != null">
+				SOVR01 = #{record.sovr01,jdbcType=OTHER},
+			</if>
+			<if test="record.so55ly != null">
+				SO55LY = #{record.so55ly,jdbcType=OTHER},
+			</if>
+			<if test="record.sodl01 != null">
+				SODL01 = #{record.sodl01,jdbcType=OTHER},
+			</if>
+			<if test="record.sodl02 != null">
+				SODL02 = #{record.sodl02,jdbcType=OTHER},
+			</if>
+			<if test="record.sodrqj != null">
+				SODRQJ = #{record.sodrqj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodl24 != null">
+				SODL24 = #{record.sodl24,jdbcType=OTHER},
+			</if>
+			<if test="record.sodc != null">
+				SODC = #{record.sodc,jdbcType=OTHER},
+			</if>
+			<if test="record.sostye != null">
+				SOSTYE = #{record.sostye,jdbcType=OTHER},
+			</if>
+			<if test="record.sotypt != null">
+				SOTYPT = #{record.sotypt,jdbcType=OTHER},
+			</if>
+			<if test="record.so55cy != null">
+				SO55CY = #{record.so55cy,jdbcType=OTHER},
+			</if>
+			<if test="record.soalph3 != null">
+				SOALPH3 = #{record.soalph3,jdbcType=OTHER},
+			</if>
+			<if test="record.soaaid != null">
+				SOAAID = #{record.soaaid,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodl03 != null">
+				SODL03 = #{record.sodl03,jdbcType=OTHER},
+			</if>
+			<if test="record.sotpur != null">
+				SOTPUR = #{record.sotpur,jdbcType=OTHER},
+			</if>
+			<if test="record.soa != null">
+				SOA = #{record.soa,jdbcType=OTHER},
+			</if>
+			<if test="record.soalph != null">
+				SOALPH = #{record.soalph,jdbcType=OTHER},
+			</if>
+			<if test="record.soph1 != null">
+				SOPH1 = #{record.soph1,jdbcType=OTHER},
+			</if>
+			<if test="record.soadds != null">
+				SOADDS = #{record.soadds,jdbcType=OTHER},
+			</if>
+			<if test="record.soname != null">
+				SONAME = #{record.soname,jdbcType=OTHER},
+			</if>
+			<if test="record.soaddz != null">
+				SOADDZ = #{record.soaddz,jdbcType=OTHER},
+			</if>
+			<if test="record.sonamee != null">
+				SONAMEE = #{record.sonamee,jdbcType=OTHER},
+			</if>
+			<if test="record.socoun != null">
+				SOCOUN = #{record.socoun,jdbcType=OTHER},
+			</if>
+			<if test="record.sonamed != null">
+				SONAMED = #{record.sonamed,jdbcType=OTHER},
+			</if>
+			<if test="record.soadd1 != null">
+				SOADD1 = #{record.soadd1,jdbcType=OTHER},
+			</if>
+			<if test="record.soalph2 != null">
+				SOALPH2 = #{record.soalph2,jdbcType=OTHER},
+			</if>
+			<if test="record.soph2 != null">
+				SOPH2 = #{record.soph2,jdbcType=OTHER},
+			</if>
+			<if test="record.soph3 != null">
+				SOPH3 = #{record.soph3,jdbcType=OTHER},
+			</if>
+			<if test="record.soelm01 != null">
+				SOELM01 = #{record.soelm01,jdbcType=OTHER},
+			</if>
+			<if test="record.sowho1 != null">
+				SOWHO1 = #{record.sowho1,jdbcType=OTHER},
+			</if>
+			<if test="record.soelm02 != null">
+				SOELM02 = #{record.soelm02,jdbcType=OTHER},
+			</if>
+			<if test="record.sowho2 != null">
+				SOWHO2 = #{record.sowho2,jdbcType=OTHER},
+			</if>
+			<if test="record.soelm03 != null">
+				SOELM03 = #{record.soelm03,jdbcType=OTHER},
+			</if>
+			<if test="record.sowho3 != null">
+				SOWHO3 = #{record.sowho3,jdbcType=OTHER},
+			</if>
+			<if test="record.soadd2 != null">
+				SOADD2 = #{record.soadd2,jdbcType=OTHER},
+			</if>
+			<if test="record.sofil2 != null">
+				SOFIL2 = #{record.sofil2,jdbcType=OTHER},
+			</if>
+			<if test="record.sofil3 != null">
+				SOFIL3 = #{record.sofil3,jdbcType=OTHER},
+			</if>
+			<if test="record.soa105 != null">
+				SOA105 = #{record.soa105,jdbcType=OTHER},
+			</if>
+			<if test="record.soaa != null">
+				SOAA = #{record.soaa,jdbcType=DECIMAL},
+			</if>
+			<if test="record.soaexp != null">
+				SOAEXP = #{record.soaexp,jdbcType=DECIMAL},
+			</if>
+			<if test="record.soa106 != null">
+				SOA106 = #{record.soa106,jdbcType=OTHER},
+			</if>
+			<if test="record.son002 != null">
+				SON002 = #{record.son002,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sosrs2 != null">
+				SOSRS2 = #{record.sosrs2,jdbcType=OTHER},
+			</if>
+			<if test="record.soedsp != null">
+				SOEDSP = #{record.soedsp,jdbcType=OTHER},
+			</if>
+			<if test="record.somgtx != null">
+				SOMGTX = #{record.somgtx,jdbcType=OTHER},
+			</if>
+			<if test="record.sod200 != null">
+				SOD200 = #{record.sod200,jdbcType=OTHER},
+			</if>
+			<if test="record.souser != null">
+				SOUSER = #{record.souser,jdbcType=OTHER},
+			</if>
+			<if test="record.sopid != null">
+				SOPID = #{record.sopid,jdbcType=OTHER},
+			</if>
+			<if test="record.soupmj != null">
+				SOUPMJ = #{record.soupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="record.soupmt != null">
+				SOUPMT = #{record.soupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodl20 != null">
+				SODL20 = #{record.sodl20,jdbcType=OTHER},
+			</if>
+			<if test="record.sodl21 != null">
+				SODL21 = #{record.sodl21,jdbcType=OTHER},
+			</if>
+			<if test="record.sodl22 != null">
+				SODL22 = #{record.sodl22,jdbcType=OTHER},
+			</if>
+			<if test="record.sodl23 != null">
+				SODL23 = #{record.sodl23,jdbcType=OTHER},
+			</if>
+			<if test="record.sodate01 != null">
+				SODATE01 = #{record.sodate01,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodate02 != null">
+				SODATE02 = #{record.sodate02,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sodoc2 != null">
+				SODOC2 = #{record.sodoc2,jdbcType=DECIMAL},
+			</if>
+			<if test="record.sorout != null">
+				SOROUT = #{record.sorout,jdbcType=OTHER},
+			</if>
+			<if test="record.somcu != null">
+				SOMCU = #{record.somcu,jdbcType=OTHER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update yajedi.F554281
+		set SON001 = #{record.son001,jdbcType=DECIMAL},
+		SOKCOO = #{record.sokcoo,jdbcType=OTHER},
+		SODOCO = #{record.sodoco,jdbcType=DECIMAL},
+		SODCTO = #{record.sodcto,jdbcType=OTHER},
+		SO55SE = #{record.so55se,jdbcType=OTHER},
+		SOCPN1 = #{record.socpn1,jdbcType=OTHER},
+		SOVR01 = #{record.sovr01,jdbcType=OTHER},
+		SO55LY = #{record.so55ly,jdbcType=OTHER},
+		SODL01 = #{record.sodl01,jdbcType=OTHER},
+		SODL02 = #{record.sodl02,jdbcType=OTHER},
+		SODRQJ = #{record.sodrqj,jdbcType=DECIMAL},
+		SODL24 = #{record.sodl24,jdbcType=OTHER},
+		SODC = #{record.sodc,jdbcType=OTHER},
+		SOSTYE = #{record.sostye,jdbcType=OTHER},
+		SOTYPT = #{record.sotypt,jdbcType=OTHER},
+		SO55CY = #{record.so55cy,jdbcType=OTHER},
+		SOALPH3 = #{record.soalph3,jdbcType=OTHER},
+		SOAAID = #{record.soaaid,jdbcType=DECIMAL},
+		SODL03 = #{record.sodl03,jdbcType=OTHER},
+		SOTPUR = #{record.sotpur,jdbcType=OTHER},
+		SOA = #{record.soa,jdbcType=OTHER},
+		SOALPH = #{record.soalph,jdbcType=OTHER},
+		SOPH1 = #{record.soph1,jdbcType=OTHER},
+		SOADDS = #{record.soadds,jdbcType=OTHER},
+		SONAME = #{record.soname,jdbcType=OTHER},
+		SOADDZ = #{record.soaddz,jdbcType=OTHER},
+		SONAMEE = #{record.sonamee,jdbcType=OTHER},
+		SOCOUN = #{record.socoun,jdbcType=OTHER},
+		SONAMED = #{record.sonamed,jdbcType=OTHER},
+		SOADD1 = #{record.soadd1,jdbcType=OTHER},
+		SOALPH2 = #{record.soalph2,jdbcType=OTHER},
+		SOPH2 = #{record.soph2,jdbcType=OTHER},
+		SOPH3 = #{record.soph3,jdbcType=OTHER},
+		SOELM01 = #{record.soelm01,jdbcType=OTHER},
+		SOWHO1 = #{record.sowho1,jdbcType=OTHER},
+		SOELM02 = #{record.soelm02,jdbcType=OTHER},
+		SOWHO2 = #{record.sowho2,jdbcType=OTHER},
+		SOELM03 = #{record.soelm03,jdbcType=OTHER},
+		SOWHO3 = #{record.sowho3,jdbcType=OTHER},
+		SOADD2 = #{record.soadd2,jdbcType=OTHER},
+		SOFIL2 = #{record.sofil2,jdbcType=OTHER},
+		SOFIL3 = #{record.sofil3,jdbcType=OTHER},
+		SOA105 = #{record.soa105,jdbcType=OTHER},
+		SOAA = #{record.soaa,jdbcType=DECIMAL},
+		SOAEXP = #{record.soaexp,jdbcType=DECIMAL},
+		SOA106 = #{record.soa106,jdbcType=OTHER},
+		SON002 = #{record.son002,jdbcType=DECIMAL},
+		SOSRS2 = #{record.sosrs2,jdbcType=OTHER},
+		SOEDSP = #{record.soedsp,jdbcType=OTHER},
+		SOMGTX = #{record.somgtx,jdbcType=OTHER},
+		SOD200 = #{record.sod200,jdbcType=OTHER},
+		SOUSER = #{record.souser,jdbcType=OTHER},
+		SOPID = #{record.sopid,jdbcType=OTHER},
+		SOUPMJ = #{record.soupmj,jdbcType=DECIMAL},
+		SOUPMT = #{record.soupmt,jdbcType=DECIMAL},
+		SODL20 = #{record.sodl20,jdbcType=OTHER},
+		SODL21 = #{record.sodl21,jdbcType=OTHER},
+		SODL22 = #{record.sodl22,jdbcType=OTHER},
+		SODL23 = #{record.sodl23,jdbcType=OTHER},
+		SODATE01 = #{record.sodate01,jdbcType=DECIMAL},
+		SODATE02 = #{record.sodate02,jdbcType=DECIMAL},
+		SODOC2 = #{record.sodoc2,jdbcType=DECIMAL},
+		SOROUT = #{record.sorout,jdbcType=OTHER},
+		SOMCU = #{record.somcu,jdbcType=OTHER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.eaju.entity.F554281">
+		update yajedi.F554281
+		<set>
+			<if test="so55se != null">
+				SO55SE = #{so55se,jdbcType=OTHER},
+			</if>
+			<if test="socpn1 != null">
+				SOCPN1 = #{socpn1,jdbcType=OTHER},
+			</if>
+			<if test="sovr01 != null">
+				SOVR01 = #{sovr01,jdbcType=OTHER},
+			</if>
+			<if test="so55ly != null">
+				SO55LY = #{so55ly,jdbcType=OTHER},
+			</if>
+			<if test="sodl01 != null">
+				SODL01 = #{sodl01,jdbcType=OTHER},
+			</if>
+			<if test="sodl02 != null">
+				SODL02 = #{sodl02,jdbcType=OTHER},
+			</if>
+			<if test="sodrqj != null">
+				SODRQJ = #{sodrqj,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl24 != null">
+				SODL24 = #{sodl24,jdbcType=OTHER},
+			</if>
+			<if test="sodc != null">
+				SODC = #{sodc,jdbcType=OTHER},
+			</if>
+			<if test="sostye != null">
+				SOSTYE = #{sostye,jdbcType=OTHER},
+			</if>
+			<if test="sotypt != null">
+				SOTYPT = #{sotypt,jdbcType=OTHER},
+			</if>
+			<if test="so55cy != null">
+				SO55CY = #{so55cy,jdbcType=OTHER},
+			</if>
+			<if test="soalph3 != null">
+				SOALPH3 = #{soalph3,jdbcType=OTHER},
+			</if>
+			<if test="soaaid != null">
+				SOAAID = #{soaaid,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl03 != null">
+				SODL03 = #{sodl03,jdbcType=OTHER},
+			</if>
+			<if test="sotpur != null">
+				SOTPUR = #{sotpur,jdbcType=OTHER},
+			</if>
+			<if test="soa != null">
+				SOA = #{soa,jdbcType=OTHER},
+			</if>
+			<if test="soalph != null">
+				SOALPH = #{soalph,jdbcType=OTHER},
+			</if>
+			<if test="soph1 != null">
+				SOPH1 = #{soph1,jdbcType=OTHER},
+			</if>
+			<if test="soadds != null">
+				SOADDS = #{soadds,jdbcType=OTHER},
+			</if>
+			<if test="soname != null">
+				SONAME = #{soname,jdbcType=OTHER},
+			</if>
+			<if test="soaddz != null">
+				SOADDZ = #{soaddz,jdbcType=OTHER},
+			</if>
+			<if test="sonamee != null">
+				SONAMEE = #{sonamee,jdbcType=OTHER},
+			</if>
+			<if test="socoun != null">
+				SOCOUN = #{socoun,jdbcType=OTHER},
+			</if>
+			<if test="sonamed != null">
+				SONAMED = #{sonamed,jdbcType=OTHER},
+			</if>
+			<if test="soadd1 != null">
+				SOADD1 = #{soadd1,jdbcType=OTHER},
+			</if>
+			<if test="soalph2 != null">
+				SOALPH2 = #{soalph2,jdbcType=OTHER},
+			</if>
+			<if test="soph2 != null">
+				SOPH2 = #{soph2,jdbcType=OTHER},
+			</if>
+			<if test="soph3 != null">
+				SOPH3 = #{soph3,jdbcType=OTHER},
+			</if>
+			<if test="soelm01 != null">
+				SOELM01 = #{soelm01,jdbcType=OTHER},
+			</if>
+			<if test="sowho1 != null">
+				SOWHO1 = #{sowho1,jdbcType=OTHER},
+			</if>
+			<if test="soelm02 != null">
+				SOELM02 = #{soelm02,jdbcType=OTHER},
+			</if>
+			<if test="sowho2 != null">
+				SOWHO2 = #{sowho2,jdbcType=OTHER},
+			</if>
+			<if test="soelm03 != null">
+				SOELM03 = #{soelm03,jdbcType=OTHER},
+			</if>
+			<if test="sowho3 != null">
+				SOWHO3 = #{sowho3,jdbcType=OTHER},
+			</if>
+			<if test="soadd2 != null">
+				SOADD2 = #{soadd2,jdbcType=OTHER},
+			</if>
+			<if test="sofil2 != null">
+				SOFIL2 = #{sofil2,jdbcType=OTHER},
+			</if>
+			<if test="sofil3 != null">
+				SOFIL3 = #{sofil3,jdbcType=OTHER},
+			</if>
+			<if test="soa105 != null">
+				SOA105 = #{soa105,jdbcType=OTHER},
+			</if>
+			<if test="soaa != null">
+				SOAA = #{soaa,jdbcType=DECIMAL},
+			</if>
+			<if test="soaexp != null">
+				SOAEXP = #{soaexp,jdbcType=DECIMAL},
+			</if>
+			<if test="soa106 != null">
+				SOA106 = #{soa106,jdbcType=OTHER},
+			</if>
+			<if test="son002 != null">
+				SON002 = #{son002,jdbcType=DECIMAL},
+			</if>
+			<if test="sosrs2 != null">
+				SOSRS2 = #{sosrs2,jdbcType=OTHER},
+			</if>
+			<if test="soedsp != null">
+				SOEDSP = #{soedsp,jdbcType=OTHER},
+			</if>
+			<if test="somgtx != null">
+				SOMGTX = #{somgtx,jdbcType=OTHER},
+			</if>
+			<if test="sod200 != null">
+				SOD200 = #{sod200,jdbcType=OTHER},
+			</if>
+			<if test="souser != null">
+				SOUSER = #{souser,jdbcType=OTHER},
+			</if>
+			<if test="sopid != null">
+				SOPID = #{sopid,jdbcType=OTHER},
+			</if>
+			<if test="soupmj != null">
+				SOUPMJ = #{soupmj,jdbcType=DECIMAL},
+			</if>
+			<if test="soupmt != null">
+				SOUPMT = #{soupmt,jdbcType=DECIMAL},
+			</if>
+			<if test="sodl20 != null">
+				SODL20 = #{sodl20,jdbcType=OTHER},
+			</if>
+			<if test="sodl21 != null">
+				SODL21 = #{sodl21,jdbcType=OTHER},
+			</if>
+			<if test="sodl22 != null">
+				SODL22 = #{sodl22,jdbcType=OTHER},
+			</if>
+			<if test="sodl23 != null">
+				SODL23 = #{sodl23,jdbcType=OTHER},
+			</if>
+			<if test="sodate01 != null">
+				SODATE01 = #{sodate01,jdbcType=DECIMAL},
+			</if>
+			<if test="sodate02 != null">
+				SODATE02 = #{sodate02,jdbcType=DECIMAL},
+			</if>
+			<if test="sodoc2 != null">
+				SODOC2 = #{sodoc2,jdbcType=DECIMAL},
+			</if>
+			<if test="sorout != null">
+				SOROUT = #{sorout,jdbcType=OTHER},
+			</if>
+			<if test="somcu != null">
+				SOMCU = #{somcu,jdbcType=OTHER},
+			</if>
+		</set>
+		where SON001 = #{son001,jdbcType=DECIMAL}
+		and SOKCOO = #{sokcoo,jdbcType=OTHER}
+		and SODOCO = #{sodoco,jdbcType=DECIMAL}
+		and SODCTO = #{sodcto,jdbcType=OTHER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.eaju.entity.F554281">
+		update yajedi.F554281
+		set SO55SE = #{so55se,jdbcType=OTHER},
+		SOCPN1 = #{socpn1,jdbcType=OTHER},
+		SOVR01 = #{sovr01,jdbcType=OTHER},
+		SO55LY = #{so55ly,jdbcType=OTHER},
+		SODL01 = #{sodl01,jdbcType=OTHER},
+		SODL02 = #{sodl02,jdbcType=OTHER},
+		SODRQJ = #{sodrqj,jdbcType=DECIMAL},
+		SODL24 = #{sodl24,jdbcType=OTHER},
+		SODC = #{sodc,jdbcType=OTHER},
+		SOSTYE = #{sostye,jdbcType=OTHER},
+		SOTYPT = #{sotypt,jdbcType=OTHER},
+		SO55CY = #{so55cy,jdbcType=OTHER},
+		SOALPH3 = #{soalph3,jdbcType=OTHER},
+		SOAAID = #{soaaid,jdbcType=DECIMAL},
+		SODL03 = #{sodl03,jdbcType=OTHER},
+		SOTPUR = #{sotpur,jdbcType=OTHER},
+		SOA = #{soa,jdbcType=OTHER},
+		SOALPH = #{soalph,jdbcType=OTHER},
+		SOPH1 = #{soph1,jdbcType=OTHER},
+		SOADDS = #{soadds,jdbcType=OTHER},
+		SONAME = #{soname,jdbcType=OTHER},
+		SOADDZ = #{soaddz,jdbcType=OTHER},
+		SONAMEE = #{sonamee,jdbcType=OTHER},
+		SOCOUN = #{socoun,jdbcType=OTHER},
+		SONAMED = #{sonamed,jdbcType=OTHER},
+		SOADD1 = #{soadd1,jdbcType=OTHER},
+		SOALPH2 = #{soalph2,jdbcType=OTHER},
+		SOPH2 = #{soph2,jdbcType=OTHER},
+		SOPH3 = #{soph3,jdbcType=OTHER},
+		SOELM01 = #{soelm01,jdbcType=OTHER},
+		SOWHO1 = #{sowho1,jdbcType=OTHER},
+		SOELM02 = #{soelm02,jdbcType=OTHER},
+		SOWHO2 = #{sowho2,jdbcType=OTHER},
+		SOELM03 = #{soelm03,jdbcType=OTHER},
+		SOWHO3 = #{sowho3,jdbcType=OTHER},
+		SOADD2 = #{soadd2,jdbcType=OTHER},
+		SOFIL2 = #{sofil2,jdbcType=OTHER},
+		SOFIL3 = #{sofil3,jdbcType=OTHER},
+		SOA105 = #{soa105,jdbcType=OTHER},
+		SOAA = #{soaa,jdbcType=DECIMAL},
+		SOAEXP = #{soaexp,jdbcType=DECIMAL},
+		SOA106 = #{soa106,jdbcType=OTHER},
+		SON002 = #{son002,jdbcType=DECIMAL},
+		SOSRS2 = #{sosrs2,jdbcType=OTHER},
+		SOEDSP = #{soedsp,jdbcType=OTHER},
+		SOMGTX = #{somgtx,jdbcType=OTHER},
+		SOD200 = #{sod200,jdbcType=OTHER},
+		SOUSER = #{souser,jdbcType=OTHER},
+		SOPID = #{sopid,jdbcType=OTHER},
+		SOUPMJ = #{soupmj,jdbcType=DECIMAL},
+		SOUPMT = #{soupmt,jdbcType=DECIMAL},
+		SODL20 = #{sodl20,jdbcType=OTHER},
+		SODL21 = #{sodl21,jdbcType=OTHER},
+		SODL22 = #{sodl22,jdbcType=OTHER},
+		SODL23 = #{sodl23,jdbcType=OTHER},
+		SODATE01 = #{sodate01,jdbcType=DECIMAL},
+		SODATE02 = #{sodate02,jdbcType=DECIMAL},
+		SODOC2 = #{sodoc2,jdbcType=DECIMAL},
+		SOROUT = #{sorout,jdbcType=OTHER},
+		SOMCU = #{somcu,jdbcType=OTHER}
+		where SON001 = #{son001,jdbcType=DECIMAL}
+		and SOKCOO = #{sokcoo,jdbcType=OTHER}
+		and SODOCO = #{sodoco,jdbcType=DECIMAL}
+		and SODCTO = #{sodcto,jdbcType=OTHER}
+	</update>
+	<select id="selectByOrderSn" resultMap="BaseResultMap">
+		SELECT O.ID AS ID,
+		O.ORDER_SN AS SODOCO,
+		TO_CHAR('01') AS SO55SE,
+		SB.ORG_ID AS SOKCOO,
+		SB.NAME AS SOCPN1,
+		O.OUT_ORDER_SN AS SOVR01,
+		DECODE(SUBSTR(O.OUT_ORDER_SN , 0 ,1),
+		't',TO_CHAR('01'),
+		'j',TO_CHAR('02'),
+		'v',TO_CHAR('03'),
+		's',TO_CHAR('04'),
+		'') AS SO55LY,
+		DECODE(SUBSTR(O.OUT_ORDER_SN , 0 ,1),
+		't','天猫',
+		'j','京东',
+		'v','唯品会',
+		's','苏宁',
+		'') AS SODL01,
+		TO_CHAR('SO') AS SODCTO,
+		TO_CHAR('Sales Order') AS SODL02,
+		to_number(substr(to_char(O.PLAN_DATE,'CCYYDDD'),2,6)) AS SODRQJ, <!--F_DATETOJDE( 
+			O.PLAN_DATE ) AS SODRQJ 电商新增 -->
+		TO_CHAR('无限制') AS SODL24,
+		SB.DISPLAY_NAME AS SODC,
+		SERVICE_TYPE AS SOSTYE, <!-- 电商增加 TO_CHAR('01') -->
+		0 AS SOTYPT, <!-- 0否 1 是？ -->
+		NULL AS SO55CY,
+		EN.DISPATCH_MEMO AS SOALPH3,
+		NULL AS SOAAID,
+		NULL AS SODL03,
+		TO_CHAR ('02') AS SOTPUR,  <!-- 01-取消，02-新增 -->
+		DECODE(O.INVOICE_INFO,NULL,'0','不需要开具发票','0','1') AS SOA,<!-- 0 否 1 是？ -->
+		O.SHIP_NAME AS SOALPH ,
+		O.SHIP_MOBILE AS SOPH1,
+		NULL AS SOADDS,
+		NULL AS SONAME,
+		NULL AS SOADDZ,
+		NULL AS SONAMEE,
+		NULL AS SOCOUN,
+		NULL AS SONAMED,
+		O.SHIP_ADDRESS AS SOADD1,
+		NULL SOALPH2 ,  <!-- YS.SENDNAME AS SOALPH2, -->
+		NULL SOPH2 ,  <!-- YS.SENDMOBILE AS SOPH2, -->
+		NULL SOPH3 ,  <!-- YS.SENDMOBILE AS SOPH3, -->
+		NULL AS SOELM01,
+		NULL SOWHO1 ,  <!-- YS.SENDERPROVINCE AS SOWHO1, -->
+		NULL AS SOELM02,
+		NULL SOWHO2 ,   <!-- YS.SENDERCITY AS SOWHO2, -->
+		NULL AS SOELM03,
+		NULL SOWHO3 ,   <!-- YS.SENDERAREA AS SOWHO3, -->
+		NULL SOADD2 ,   <!-- YS.LONGADDRESS AS SOADD2, -->
+		EN.DISPATCH_SN AS SOFIL2,
+		NULL AS SOFIL3,
+		0 AS SOA105, <!-- 0否 1 是？ -->
+		0 AS SOAA,
+		NULL AS SOAEXP,  <!-- 不允许提供 -->
+		1 AS SOA106,<!-- 0否 1 是？ -->
+		<!--序列 -->
+		NULL AS SON001,
+		NULL AS SON002,
+		'0' AS SOSRS2,<!-- 0否 1 是？ 88 99 测试用 -->
+		'N' AS SOEDSP, <!-- Y?N -->
+		NULL AS SOMGTX,
+		JDE_REMARK AS SOD200,     <!-- 备注 -->
+		'FBS' AS SOUSER, <!-- 固定值 -->
+		'FBS' AS SOPID,  <!-- 固定值 -->
+		to_number(substr(to_char(SYSDATE,'CCYYDDD'),2,6)) AS SOUPMJ,<!--F_DATETOJDE( 
+			SYSDATE ) AS SOUPMJ 当前日期 to_number(substr(to_char(SYSDATE,'CCYYDDD'),2,6)); -->
+		TO_NUMBER( TO_CHAR( SYSDATE , 'HH24MISS' ) ) AS SOUPMT,<!-- 当前时间 -->
+		'非职员' AS SODL20,
+		'电商' AS SODL21,
+		O.BDWAREHOUSE AS SOMCU
+		FROM FBS2.XX_ORDER@APP_FBS2 O
+		LEFT JOIN FBS2.XX_STORES@APP_FBS2 SB ON ( SB.ID = O.STORES_BUSINESS_ID )
+		LEFT JOIN FBS2.FBS2_EXTRA_NOTE@APP_FBS2 EN ON (EN.ORDER_ID = O.ID)
+		WHERE trim(O.ORDER_SN) = #{orderSn}
+	</select>
+</mapper>

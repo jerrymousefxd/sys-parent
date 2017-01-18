@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eaju.mapper.ProductMapper">
+
+	<resultMap id="BaseResultMap" type="com.eaju.entity.Product">
+		<result column="ETHI_ORDER_NO" property="ethiNo" />
+		<result column="ETHI_NAME" property="ethiName" />
+		<result column="ETHI_QUANTITY" property="ethiQuantity" />
+		<result column="COMMODITY_GROUP_NAME" property="comGroupName" />
+		<result column="EBCD_NAME_CN" property="brand" />
+	</resultMap>
+	<select id="getProductList" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		ehoi.ETHI_ORDER_NO ethiNo,				<!-- 订单号 -->
+		ehoi.ETHI_NAME ethiName,					<!-- 商品名称 -->
+		ehoi.ETHI_QUANTITY ethiQuantity,				<!-- 件数 -->
+		ccmg.COMMODITY_GROUP_NAME comGroupName,		<!-- 品类 -->
+		ecm.EBCD_NAME_CN brand				<!-- 品牌 -->
+		FROM
+		yajtmszp.ET_HD_ORDER_ITEM ehoi
+		LEFT JOIN yajlmdm.cd_common_material ccm on ccm.CDCM_MATERIAL_NO
+		= ehoi.ETHI_CODE
+		LEFT JOIN yajlmdm.cd_common_material_group ccmg ON
+		ccmg.COMMODITY_GROUP_CODE = ccm.CDCM_MATERIAL_GROUP1
+		LEFT JOIN yajapp.eb_code_master ecm on ecm.EBCD_CODE= ccm.CDCM_BRAND AND
+		ecm.ebcd_dictionary_type='SYS_MATERIAL_BRAND'
+		WHERE ehoi.ETHI_ORDER_NO =#{eoNo}
+	</select>
+
+</mapper>
